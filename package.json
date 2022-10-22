@@ -36,6 +36,7 @@
 		"@threlte/core": "^4.3.2",
 		"@threlte/extras": "^4.3.0",
 		"sass": "^1.55.0",
+		"svelte-icons": "^2.1.0",
 		"three": "^0.145.0"
 	}
 }
