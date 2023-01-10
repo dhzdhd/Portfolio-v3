@@ -1,19 +1,19 @@
 <script lang="ts"></script>
 
 <section>
-    <div class="top-left-gradient"></div>
-    <div>
-        <h1>Hello</h1>
-        <h2>I am <span>dhzdhd</span></h2>
-    </div>
-    <div class="bottom-right-gradient"></div>
+	<div class="top-left-gradient" />
+	<div>
+		<h1>Hello</h1>
+		<h2>I am <span>dhzdhd</span></h2>
+	</div>
+	<div class="bottom-right-gradient" />
 </section>
 
 <style lang="sass">
     @use '../../../styles/vars'
 
     section
-        height: 100%
+        height: 100vw
         max-width: 100vw
         display: flex
         flex-direction: column

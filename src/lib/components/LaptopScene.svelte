@@ -7,7 +7,13 @@
 </script>
 
 <PerspectiveCamera position={{ x: -6, y: 2, z: 3 }} fov={25}>
-	<OrbitControls autoRotate enableDamping enablePan={false} enableRotate={false} enableZoom={false} />
+	<OrbitControls
+		autoRotate
+		enableDamping
+		enablePan={false}
+		enableRotate={false}
+		enableZoom={false}
+	/>
 </PerspectiveCamera>
 
 <AmbientLight />
