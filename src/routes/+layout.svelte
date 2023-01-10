@@ -21,8 +21,8 @@
         height: 100%
         width: 100%
         padding: 2rem 5rem
-        background-color: vars.$secondary-color
+        background-color: vars.$color-secondary
 
         @media (prefers-color-scheme: dark)
-            background-color: vars.$tertiary-color
+            background-color: vars.$color-tertiary
 </style>

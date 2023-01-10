@@ -1,12 +1,8 @@
 <script lang="ts">
-	import LaptopScene from '$lib/components/LaptopScene.svelte';
-	import { Canvas } from '@threlte/core';
-</script>
+
+  </script>
 
 <section>
-	<Canvas>
-        <LaptopScene />
-	</Canvas>
 </section>
 
 <style lang="sass">

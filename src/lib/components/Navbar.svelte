@@ -34,7 +34,7 @@
         position: fixed
         height: 100vh
         width: 100vw
-        background-color: vars.$primary-color
+        background-color: vars.$color-primary-dark
 
         ul
             display: flex
@@ -49,7 +49,7 @@
                 padding: 1rem 2rem
                 text-align: center
                 background-size: 205% 200%
-                background-image: linear-gradient(to right, vars.$accent-color 50%, transparent 0)
+                background-image: linear-gradient(to right, vars.$color-accent 50%, transparent 0)
                 background-position: right
                 transition: 0.5s
 
@@ -57,12 +57,12 @@
                     background-position: left
 
                 &:hover > *
-                    color: vars.$secondary-color
+                    color: vars.$color-secondary
 
                 a
                     font-size: 3rem
                     text-decoration: none
-                    color: vars.$tertiary-color
+                    color: vars.$color-tertiary
 
     button
         width: 5rem
