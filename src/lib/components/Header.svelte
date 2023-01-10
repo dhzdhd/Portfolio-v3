@@ -4,7 +4,7 @@
 
 <header>
 	<div />
-	<Navbar />
+	<!-- <Navbar /> -->
 </header>
 
 <style lang="sass">

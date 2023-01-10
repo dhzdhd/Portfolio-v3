@@ -1,14 +1,13 @@
 <script lang="ts">
+	import Landing from "$lib/components/sections/Landing.svelte";
+
+
 
   </script>
 
-<section>
-</section>
+<Landing />
+
 
 <style lang="sass">
-    section
-        height: 100%
-        width: 100%
-
 
 </style>
