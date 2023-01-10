@@ -1,6 +1,5 @@
 <script lang="ts">
 	import Header from '$lib/components/Header.svelte';
-	import Navbar from '$lib/components/Navbar.svelte';
 	import '../styles/global.sass';
 	import '../styles/vars.sass';
 </script>
@@ -16,13 +15,14 @@
 
 <style lang="sass">
     @use '../styles/vars'
+    @use '../styles/utils'
 
     main
         height: 100%
         width: 100%
         padding: 2rem 5rem
-        background-color: vars.$color-secondary
+        background-color: vars.$color-primary-light
 
         @media (prefers-color-scheme: dark)
-            background-color: vars.$color-tertiary
+            background-color: vars.$color-primary-dark
 </style>
