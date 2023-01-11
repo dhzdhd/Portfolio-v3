@@ -4,7 +4,13 @@
 </script>
 
 <div>
-	<h2>{text}</h2>
+    {#if alignment === 'left'}
+    	<h2>{text}</h2>
+        <span></span>
+    {:else}
+        <span></span>
+        <h2>{text}</h2>
+    {/if}
 </div>
 
 <style lang="sass">
@@ -12,9 +18,18 @@
 
     div
         display: flex
+        flex-direction: row
+        justify-content: space-between
+        align-items: center
+        gap: 2rem
 
         h2
             color: vars.$color-primary-light
+
+        span
+            height: 0.5rem
+            width: 100%
+            background: linear-gradient(135deg, vars.$color-accent 0%, vars.$color-tertiary 100%)
 
 
 </style>

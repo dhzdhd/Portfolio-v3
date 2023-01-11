@@ -20,7 +20,7 @@
     main
         // height: 100%
         width: 100%
-        padding: 2rem 5rem
+        padding: 2rem 2rem
         background-color: vars.$color-primary-light
 
         @media (prefers-color-scheme: dark)

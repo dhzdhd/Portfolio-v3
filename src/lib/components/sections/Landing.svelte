@@ -6,7 +6,7 @@
 	onMount(() => (ready = true));
 </script>
 
-<section>
+<section id="landing">
 	<div class="top-left-gradient" />
 	{#key ready}
 		<div in:fly={{ y: 100, duration: 1000, opacity: 0 }}>
