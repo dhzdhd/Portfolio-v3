@@ -21,7 +21,7 @@
     @use '../../../styles/vars'
 
     section
-        height: calc(100vh - 4rem)
+        height: 100vh
         max-width: 100vw
         display: flex
         flex-direction: column

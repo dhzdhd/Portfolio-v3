@@ -42,9 +42,17 @@
 
                 a
                     text-decoration: none
-                    color: vars.$color-primary-light
+                    color: vars.$color-primary-dark
 
                     &:hover
-                        color: vars.$color-accent
+                        color: vars.$color-tertiary
+
+                @media (prefers-color-scheme: dark)
+                    a
+                        color: vars.$color-primary-light
+
+                        &:hover
+                            color: vars.$color-accent
+
 
 </style>

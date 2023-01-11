@@ -24,12 +24,15 @@
         gap: 2rem
 
         h2
-            color: vars.$color-primary-light
+            color: vars.$color-primary-dark
 
         span
             height: 0.5rem
             width: 100%
             background: linear-gradient(135deg, vars.$color-accent 0%, vars.$color-tertiary 100%)
 
+        @media (prefers-color-scheme: dark)
+            h2
+                color: vars.$color-primary-light
 
 </style>
