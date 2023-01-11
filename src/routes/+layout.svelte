@@ -18,7 +18,7 @@
     @use '../styles/utils'
 
     main
-        height: 100%
+        // height: 100%
         width: 100%
         padding: 2rem 5rem
         background-color: vars.$color-primary-light
