@@ -1,14 +1,11 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+	import { isReady } from '$lib/stores/utils';
 	import { fly } from 'svelte/transition';
-
-	let ready = false;
-	onMount(() => (ready = true));
 </script>
 
 <section id="landing">
 	<div class="top-left-gradient" />
-	{#key ready}
+	{#key $isReady}
 		<div in:fly={{ y: 100, duration: 1000, opacity: 0 }}>
 			<h1>Hello</h1>
 			<h2>I am <span>dhzdhd</span></h2>

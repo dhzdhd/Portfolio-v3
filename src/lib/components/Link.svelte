@@ -1,6 +1,6 @@
 <script lang="ts">
-    export let title: string;
-    export let url: string;
+	export let title: string;
+	export let url: string;
 </script>
 
 <a href={url} target="_blank" rel="noreferrer noopener">{title}</a>

@@ -28,7 +28,7 @@
 
         span
             height: 0.5rem
-            width: 100%
+            flex-grow: 1
             background: linear-gradient(135deg, vars.$color-accent 0%, vars.$color-tertiary 100%)
 
         @media (prefers-color-scheme: dark)
