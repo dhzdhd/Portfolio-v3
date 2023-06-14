@@ -23,6 +23,8 @@
         backdrop-filter: blur(10px)
 
         @media (prefers-color-scheme: dark)
+            padding: 0rem 0rem
+            justify-content: center
             background-color: transparentize(vars.$color-primary-light, 0.98)
 
 </style>
