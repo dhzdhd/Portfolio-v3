@@ -14,7 +14,6 @@ export const techArr: Array<IconMetadata> = [
 	{ name: 'dart', segment: 'original' },
 	{ name: 'docker', segment: 'original' },
 	{ name: 'dotnetcore', segment: 'original' },
-	{ name: 'elm', segment: 'original' },
 	{ name: 'express', segment: 'original' },
 	{ name: 'firebase', segment: 'plain' },
 	{ name: 'flutter', segment: 'original' },

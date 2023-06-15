@@ -18,10 +18,6 @@
 	.node
 		width: 30px
 		height: 30px
-
-		// Filter applied to imitate color
-		// https://codepen.io/sosuke/pen/Pjoqqp
-
 		position: absolute
 		animation: rotate 20s infinite linear
 		transform-style: preserve-3d
@@ -33,10 +29,12 @@
 				transform: translate3d(var(--x), var(--y), var(--z)) rotate3d(0, -1, 0, 1turn)
 
 		&:hover
-			// height: 200px
-			transform: scale3d(2.0, 2.0, 2.0)
+			height: 200px
+			width: 200px
 
 	.colored
+		// Filter applied to imitate color
+		// https://codepen.io/sosuke/pen/Pjoqqp
 		filter: invert(73%) sepia(12%) saturate(1561%) hue-rotate(100deg) brightness(98%) contrast(95%)
 
 </style>
