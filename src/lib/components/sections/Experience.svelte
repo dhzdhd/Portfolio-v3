@@ -4,13 +4,18 @@
 
 	const radius = 200;
 	const nodes: Array<IconMetadata> = techArr;
+	const nodeCount = techArr.length;
 
-	for (let i in techArr) {
-		const angle1 = Math.random() * Math.PI * 2;
-		const angle2 = Math.random() * Math.PI * 2;
-		const x = radius * Math.sin(angle1) * Math.cos(angle2) * 0.8;
-		const y = radius * Math.sin(angle1) * Math.sin(angle2) * 0.8;
-		const z = radius * Math.cos(angle1) * 0.8;
+	const goldenAngle = Math.PI * (3 - Math.sqrt(5));
+
+	for (let i = 0; i < nodeCount; i++) {
+		const y = (1 - (i / (nodeCount - 1)) * 2) * radius; // Distribute the nodes along the y-axis from -radius to radius
+		const latitude = Math.asin(y / radius); // Latitude angle
+
+		const longitude = goldenAngle * i; // Longitude angle
+
+		const x = Math.cos(longitude) * Math.cos(latitude) * radius;
+		const z = Math.sin(longitude) * Math.cos(latitude) * radius;
 		techArr[i] = { ...techArr[i], x: x, y: y, z: z };
 	}
 </script>

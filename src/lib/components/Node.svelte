@@ -2,12 +2,13 @@
 	import type { IconMetadata } from '$lib/data';
 
 	export let iconData: IconMetadata;
+	let colored = iconData.segment === 'plain';
 </script>
 
 <img
 	src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/{iconData.name}/{iconData.name}-{iconData.segment}.svg"
-	class="node"
-	style="--x: {iconData.x}px; --y: {iconData.y}px; --z: {iconData.z}px"
+	class="node {colored ? 'colored' : ''}"
+	style="--x: {iconData.x}px; --y: {iconData.y}px; --z: {iconData.z}px;"
 	alt="{iconData.name} icon"
 />
 
@@ -17,9 +18,10 @@
 	.node
 		width: 30px
 		height: 30px
+
 		// Filter applied to imitate color
 		// https://codepen.io/sosuke/pen/Pjoqqp
-		// filter: invert(73%) sepia(12%) saturate(1561%) hue-rotate(100deg) brightness(98%) contrast(95%)
+
 		position: absolute
 		animation: rotate 20s infinite linear
 		transform-style: preserve-3d
@@ -33,4 +35,8 @@
 		&:hover
 			// height: 200px
 			transform: scale3d(2.0, 2.0, 2.0)
+
+	.colored
+		filter: invert(73%) sepia(12%) saturate(1561%) hue-rotate(100deg) brightness(98%) contrast(95%)
+
 </style>
