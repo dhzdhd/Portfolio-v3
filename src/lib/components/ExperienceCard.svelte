@@ -1,7 +1,7 @@
 <script lang="ts">
   import { expArr } from '$lib/data';
 
-  export let title: string = '';
+  export let title: string;
 </script>
 
 <div class="card">
