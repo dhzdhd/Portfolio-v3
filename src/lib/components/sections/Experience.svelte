@@ -1,6 +1,8 @@
 <script lang="ts">
   import Node from '$lib/components/Node.svelte';
   import { techArr, type IconMetadata } from '$lib/data';
+  import ExperienceCard from '../ExperienceCard.svelte';
+  import GradientHeading from '../GradientHeading.svelte';
 
   const radius = 150;
   const nodes: Array<IconMetadata> = techArr;
@@ -20,6 +22,11 @@
 </script>
 
 <section id="experience">
+  <GradientHeading text={'Experience'} alignment={'right'} />
+  <div class="expcard">
+    <ExperienceCard title={'Languages'} />
+    <ExperienceCard title={'Frameworks'} />
+  </div>
   <div class="container">
     {#each nodes as node}
       <Node iconData={node} />
@@ -31,21 +38,24 @@
     @use '../../../styles/vars'
 
     section
-        height: 100vh
-        max-width: 100vw
         display: flex
         flex-direction: column
         align-items: center
-        justify-content: center
+        gap: 2rem
+
+        .expcard
+            width: 100%
+            display: flex
+            gap: 2rem
 
         .container
             display: flex
             justify-content: center
-            background-color: red
-            width: 0px
-            height: 0px
-            position: relative
-            perspective: 1000px
+            align-items: center
+            margin: 5rem 0rem
+            width: 200px
+            height: 200px
+            perspective: 5000px
             animation: rotate 20s infinite linear
             transform-style: preserve-3d
 

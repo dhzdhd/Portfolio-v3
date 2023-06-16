@@ -14,7 +14,6 @@
       <Link title="Github" url="https://github.com/dhzdhd" />
       .
     </p>
-    <p>My other hobbies include gaming - especially flight simulators, KSP, Cities Skylines.</p>
   </div>
 </section>
 

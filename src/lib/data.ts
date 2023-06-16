@@ -6,7 +6,23 @@ export interface IconMetadata {
   segment: 'plain' | 'original';
 }
 
-export const techArr: Array<IconMetadata> = [
+export interface ExperienceInfo {
+  lang: string;
+  icon: string;
+}
+
+export const expArr: ExperienceInfo[] = [
+  {
+    lang: 'python',
+    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg'
+  },
+  {
+    lang: 'javascript',
+    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg'
+  }
+];
+
+export const techArr: IconMetadata[] = [
   { name: 'c', segment: 'original' },
   { name: 'clojure', segment: 'original' },
   { name: 'cplusplus', segment: 'original' },

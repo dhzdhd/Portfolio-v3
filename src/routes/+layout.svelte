@@ -24,12 +24,17 @@
         width: 100%
         padding: 2rem 2rem
         background-color: vars.$color-primary-light
+        display: flex
+        flex-direction: column
+        gap: 10rem
 
         @media (prefers-color-scheme: dark)
             background-color: vars.$color-primary-dark
 
+        @media (min-width: vars.$md)
+            padding: 2rem 5rem
+
         @media (min-width: vars.$lg)
             padding: 2rem 10rem
-
 
 </style>
