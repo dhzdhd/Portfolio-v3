@@ -1,7 +1,4 @@
 <script lang="ts">
-  import Node from '$lib/components/Node.svelte';
-  import { techArr, type IconMetadata } from '$lib/data';
-  import ExperienceCard from '../ExperienceCard.svelte';
   import GradientHeading from '../GradientHeading.svelte';
   import ProjectCard from '../ProjectCard.svelte';
 </script>
