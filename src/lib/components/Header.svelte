@@ -1,10 +1,10 @@
 <script lang="ts">
-	import Navbar from './Navbar.svelte';
+  import Navbar from './Navbar.svelte';
 </script>
 
 <header>
-	<div />
-	<Navbar />
+  <div />
+  <Navbar />
 </header>
 
 <style lang="sass">

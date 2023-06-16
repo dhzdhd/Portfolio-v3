@@ -1,26 +1,26 @@
 <script lang="ts">
-	import { isNavClicked } from '$lib/stores/nav';
-	import { fly, slide } from 'svelte/transition';
-	import IoIosMenu from 'svelte-icons/io/IoIosMenu.svelte';
+  import { isNavClicked } from '$lib/stores/nav';
+  import { fly, slide } from 'svelte/transition';
+  import IoIosMenu from 'svelte-icons/io/IoIosMenu.svelte';
 </script>
 
 <nav>
-    <!-- <IoIosMenu></IoIosMenu> -->
+  <!-- <IoIosMenu></IoIosMenu> -->
 
-    <ul>
-        <li>
-            <a href="#about">About</a>
-        </li>
-        <li>
-            <a href="#experience">Experience</a>
-        </li>
-        <li>
-            <a href="#projects">Projects</a>
-        </li>
-        <li>
-            <a href="#contact">Contact</a>
-        </li>
-    </ul>
+  <ul>
+    <li>
+      <a href="#about">About</a>
+    </li>
+    <li>
+      <a href="#experience">Experience</a>
+    </li>
+    <li>
+      <a href="#projects">Projects</a>
+    </li>
+    <li>
+      <a href="#contact">Contact</a>
+    </li>
+  </ul>
 </nav>
 
 <style lang="sass">

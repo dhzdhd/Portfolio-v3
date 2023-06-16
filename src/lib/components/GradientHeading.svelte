@@ -1,16 +1,16 @@
 <script lang="ts">
-	export let text: string;
-	export let alignment: 'left' | 'right';
+  export let text: string;
+  export let alignment: 'left' | 'right';
 </script>
 
 <div>
-    {#if alignment === 'left'}
-    	<h2>{text}</h2>
-        <span></span>
-    {:else}
-        <span></span>
-        <h2>{text}</h2>
-    {/if}
+  {#if alignment === 'left'}
+    <h2>{text}</h2>
+    <span />
+  {:else}
+    <span />
+    <h2>{text}</h2>
+  {/if}
 </div>
 
 <style lang="sass">

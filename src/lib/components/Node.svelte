@@ -1,15 +1,15 @@
 <script lang="ts">
-	import type { IconMetadata } from '$lib/data';
+  import type { IconMetadata } from '$lib/data';
 
-	export let iconData: IconMetadata;
-	let colored = iconData.segment === 'plain';
+  export let iconData: IconMetadata;
+  let colored = iconData.segment === 'plain';
 </script>
 
 <img
-	src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/{iconData.name}/{iconData.name}-{iconData.segment}.svg"
-	class="node {colored ? 'colored' : ''}"
-	style="--x: {iconData.x}px; --y: {iconData.y}px; --z: {iconData.z}px;"
-	alt="{iconData.name} icon"
+  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/{iconData.name}/{iconData.name}-{iconData.segment}.svg"
+  class="node {colored ? 'colored' : ''}"
+  style="--x: {iconData.x}px; --y: {iconData.y}px; --z: {iconData.z}px;"
+  alt="{iconData.name} icon"
 />
 
 <style lang="sass">

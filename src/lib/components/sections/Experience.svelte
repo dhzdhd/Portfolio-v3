@@ -1,31 +1,30 @@
 <script lang="ts">
-	import Node from '$lib/components/Node.svelte';
-	import { techArr, type IconMetadata } from '$lib/data';
+  import Node from '$lib/components/Node.svelte';
+  import { techArr, type IconMetadata } from '$lib/data';
 
-	const radius = 200;
-	const nodes: Array<IconMetadata> = techArr;
-	const nodeCount = techArr.length;
+  const radius = 150;
+  const nodes: Array<IconMetadata> = techArr;
+  const nodeCount = techArr.length;
 
-	const goldenAngle = Math.PI * (3 - Math.sqrt(5));
+  const goldenAngle = Math.PI * (3 - Math.sqrt(5));
 
-	for (let i = 0; i < nodeCount; i++) {
-		const y = (1 - (i / (nodeCount - 1)) * 2) * radius; // Distribute the nodes along the y-axis from -radius to radius
-		const latitude = Math.asin(y / radius); // Latitude angle
+  for (let i = 0; i < nodeCount; i++) {
+    const y = (1 - (i / (nodeCount - 1)) * 2) * radius; // Distribute nodes along the y-axis from -radius to radius
+    const latitude = Math.asin(y / radius); // Latitude angle
+    const longitude = goldenAngle * i; // Longitude angle
 
-		const longitude = goldenAngle * i; // Longitude angle
-
-		const x = Math.cos(longitude) * Math.cos(latitude) * radius;
-		const z = Math.sin(longitude) * Math.cos(latitude) * radius;
-		techArr[i] = { ...techArr[i], x: x, y: y, z: z };
-	}
+    const x = Math.cos(longitude) * Math.cos(latitude) * radius;
+    const z = Math.sin(longitude) * Math.cos(latitude) * radius;
+    techArr[i] = { ...techArr[i], x: x, y: y, z: z };
+  }
 </script>
 
 <section id="experience">
-	<div class="container">
-		{#each nodes as node (node.x)}
-			<Node iconData={node} />
-		{/each}
-	</div>
+  <div class="container">
+    {#each nodes as node}
+      <Node iconData={node} />
+    {/each}
+  </div>
 </section>
 
 <style lang="sass">

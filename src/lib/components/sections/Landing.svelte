@@ -1,17 +1,17 @@
 <script lang="ts">
-	import { isReady } from '$lib/stores/utils';
-	import { fly } from 'svelte/transition';
+  import { isReady } from '$lib/stores/utils';
+  import { fly } from 'svelte/transition';
 </script>
 
 <section id="landing">
-	<div class="top-left-gradient" />
-	{#key $isReady}
-		<div in:fly={{ y: 100, duration: 1000, opacity: 0 }}>
-			<h1>Hello</h1>
-			<h2>I am <span>dhzdhd</span></h2>
-		</div>
-	{/key}
-	<div class="bottom-right-gradient" />
+  <div class="top-left-gradient" />
+  {#key $isReady}
+    <div in:fly={{ y: 100, duration: 1000, opacity: 0 }}>
+      <h1>Hello</h1>
+      <h2>I am <span>dhzdhd</span></h2>
+    </div>
+  {/key}
+  <div class="bottom-right-gradient" />
 </section>
 
 <style lang="sass">
