@@ -16,7 +16,9 @@
         border-radius: 2rem
         background: linear-gradient(180deg, transparentize(white, 0.96) 0%, transparentize(vars.$color-tertiary, 0.9)  100%)
         color: white
+        transition-duration: 300ms
 
         &:hover
             background: linear-gradient(320deg, vars.$color-accent 0%, vars.$color-tertiary 100%)
+            transform: scale(1.02)
 </style>

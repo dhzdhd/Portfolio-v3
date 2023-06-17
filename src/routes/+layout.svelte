@@ -22,10 +22,12 @@
 
     main
         width: 100%
+        min-height: 100%
         padding: 2rem 2rem
         background-color: vars.$color-primary-light
         display: flex
         flex-direction: column
+        justify-content: center
         gap: 10rem
 
         @media (prefers-color-scheme: dark)

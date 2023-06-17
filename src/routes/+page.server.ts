@@ -13,6 +13,8 @@ export async function load({ fetch, params }) {
 
   const res = await fetch('');
 
+  throw Error();
+
   return {
     post: ''
   };
