@@ -23,7 +23,7 @@
 
 <section id="experience">
   <GradientHeading text={'Experience'} alignment={'right'} />
-  <div class="expcard">
+  <div class="exp-card">
     <ExperienceCard title={'Languages'} />
     <ExperienceCard title={'Frameworks'} />
   </div>
@@ -43,10 +43,14 @@
         align-items: center
         gap: 2rem
 
-        .expcard
+        .exp-card
             width: 100%
             display: flex
+            flex-direction: column
             gap: 2rem
+
+            @media (min-width: vars.$md)
+              flex-direction: row
 
         .container
             display: flex
