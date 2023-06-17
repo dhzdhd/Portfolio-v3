@@ -21,6 +21,7 @@
 		position: absolute
 		animation: rotate 20s infinite linear
 		transform-style: preserve-3d
+		transition-duration: 300ms
 
 		@keyframes rotate
 			from
