@@ -1,7 +1,7 @@
 <script lang="ts">
-  import { isNavClicked } from '$lib/stores/nav';
-  import { fly, slide } from 'svelte/transition';
-  import IoIosMenu from 'svelte-icons/io/IoIosMenu.svelte';
+  // import { isNavClicked } from '$lib/stores/nav';
+  // import { fly, slide } from 'svelte/transition';
+  // import IoIosMenu from 'svelte-icons/io/IoIosMenu.svelte';
 </script>
 
 <nav>
