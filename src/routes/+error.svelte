@@ -5,7 +5,6 @@
   import Contact from '$lib/components/sections/Contact.svelte';
   import Experience from '$lib/components/sections/Experience.svelte';
   import Landing from '$lib/components/sections/Landing.svelte';
-  import Projects from '$lib/components/sections/Projects.svelte';
 </script>
 
 <Landing />

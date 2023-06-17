@@ -11,6 +11,8 @@ export interface ExperienceInfo {
   icon: string;
 }
 
+export const projArr = ['ExCode', 'SyncVault', 'Obsidian'];
+
 export const expArr: ExperienceInfo[] = [
   {
     lang: 'python',
