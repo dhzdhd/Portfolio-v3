@@ -17,7 +17,7 @@
   </div>
   <p>{item.description ?? 'No description'}</p>
   <div class="bottom left">
-    <span>{item.language}</span>
+    <span>{item.language ?? ''}</span>
     <div class="bottom-container center">
       <Icon src={VscRepoForked} size="16" />
       <span>{item.forks}</span>
@@ -50,6 +50,12 @@
             align-items: center
             gap: 0.5rem
             font-size: 1.2rem
+
+            span
+                max-width: 50vw
+                overflow: hidden
+                white-space: nowrap
+                text-overflow: ellipsis
 
         p
             max-lines: 2

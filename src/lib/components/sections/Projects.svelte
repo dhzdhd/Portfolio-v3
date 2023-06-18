@@ -35,13 +35,13 @@
   >
     <Icon src={Down} size="50px" />
   </button>
-  <div class="project-grid">
-    {#if isVisible}
+  {#if isVisible}
+    <div class="project-grid">
       {#each data.repos as item}
         <ProjectCard {item} />
       {/each}
-    {/if}
-  </div>
+    </div>
+  {/if}
 </section>
 
 <style lang="sass">
