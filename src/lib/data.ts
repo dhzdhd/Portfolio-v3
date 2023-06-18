@@ -76,6 +76,11 @@ export const expArr: ExperienceInfo[] = [
     name: 'qt',
     icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/qt/qt-original.svg',
     type: 'framework'
+  },
+  {
+    name: 'nextjs',
+    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg',
+    type: 'framework'
   }
 ];
 
