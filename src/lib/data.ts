@@ -11,7 +11,7 @@ export interface ExperienceInfo {
   icon: string;
 }
 
-export const projArr = ['ExCode', 'SyncVault', 'Obsidian'];
+export const projArr = ['ExCode', 'SyncVault', 'Obsidian', 'database', 'blog', 'Portfolio-v3'];
 
 export const expArr: ExperienceInfo[] = [
   {

@@ -14,13 +14,14 @@
     {/if}
     <span>{item.name}</span>
   </div>
-  <p>{item.description}</p>
-  <div class="bottom">
-    <div class="bottom-container">
+  <p>{item.description ?? 'No description'}</p>
+  <div class="bottom left">
+    <span>{item.language}</span>
+    <div class="bottom-container center">
       <Icon src={VscRepoForked} size="16" />
       <span>{item.forks}</span>
     </div>
-    <div class="bottom-container">
+    <div class="bottom-container right">
       <Icon src={Star} size="16" />
       <span>{item.stars}</span>
     </div>
@@ -49,16 +50,25 @@
             font-size: 1.2rem
 
         .bottom
-            display: flex
-            justify-content: space-between
+            display: grid
+            grid-template-columns: repeat(3, 1fr)
+            align-items: center
+
             .bottom-container
                 display: flex
                 align-items: center
                 gap: 0.5rem
 
+            .left
+                justify-self: start
+
+            .center
+                justify-self: center
+
+            .right
+                justify-self: right
+
         &:hover
             background: linear-gradient(320deg, vars.$color-accent 0%, vars.$color-tertiary 100%)
             transform: scale(1.02)
-
-
 </style>

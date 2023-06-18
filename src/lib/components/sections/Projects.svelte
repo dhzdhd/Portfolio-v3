@@ -27,6 +27,12 @@
         .project-grid
             display: grid
             width: 100%
-            grid-template-columns: repeat(2, 1fr)
+            grid-template-columns: repeat(1, 1fr)
             gap: 1rem
+
+            @media (min-width: vars.$md)
+                grid-template-columns: repeat(2, 1fr)
+
+            @media (min-width: vars.$xl)
+                grid-template-columns: repeat(3, 1fr)
 </style>
