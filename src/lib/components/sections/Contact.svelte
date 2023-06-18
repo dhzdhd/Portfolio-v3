@@ -24,7 +24,7 @@
     {#each contactArr as item}
       <div class="card">
         <a href={item.url} target="_blank">
-          <Icon src={item.icon} size="48px" color="white" />
+          <Icon src={item.icon} size="36px" color="white" />
         </a>
       </div>
     {/each}
