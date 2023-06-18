@@ -3,11 +3,12 @@
   import type { RepoModel } from '../../routes/proxy+page.server';
   import VscRepoForked from 'svelte-icons-pack/vsc/VscRepoForked';
   import Star from 'svelte-icons-pack/vsc/VscStarEmpty';
+  import { fly } from 'svelte/transition';
 
   export let item: RepoModel;
 </script>
 
-<a class="card" href={item.url} target="_blank">
+<a transition:fly={{ y: 200, duration: 300 }} class="card" href={item.url} target="_blank">
   <div class="top">
     {#if item.isFork}
       <Icon src={VscRepoForked} size="16" />
@@ -36,7 +37,8 @@
         display: grid
         grid-template-rows: repeat(3, 1fr)
         width: 100%
-        padding: 1rem 2rem
+        height: 14rem
+        padding: 0rem 2rem
         border-radius: 2rem
         background: linear-gradient(180deg, transparentize(white, 0.96) 0%, transparentize(vars.$color-tertiary, 0.9)  100%)
         color: white
@@ -48,6 +50,10 @@
             align-items: center
             gap: 0.5rem
             font-size: 1.2rem
+
+        p
+            max-lines: 2
+            text-overflow: ellipsis
 
         .bottom
             display: grid

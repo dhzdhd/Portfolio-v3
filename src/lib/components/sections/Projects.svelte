@@ -1,9 +1,25 @@
 <script lang="ts">
+  import Icon from 'svelte-icons-pack';
   import type { Response } from '../../../routes/+page.server';
   import GradientHeading from '../GradientHeading.svelte';
   import ProjectCard from '../ProjectCard.svelte';
+  import Down from 'svelte-icons-pack/fi/FiArrowDown';
+  import Up from 'svelte-icons-pack/fi/FiArrowUp';
+  import { elasticOut } from 'svelte/easing';
+
+  function spin(node: any, { duration }: any) {
+    return {
+      duration,
+      css: (t: any) => {
+        const eased = elasticOut(t);
+
+        return `transform: rotate(${eased * 180}deg)`;
+      }
+    };
+  }
 
   export let data: Response;
+  let isVisible = false;
 </script>
 
 <section id="projects">
@@ -12,6 +28,20 @@
     {#each data.highlighted as item}
       <ProjectCard {item} />
     {/each}
+  </div>
+  <button
+    transition:spin|local={{ duration: 200 }}
+    on:click={() => (isVisible = !isVisible)}
+    style="transform: rotate({isVisible ? '180deg' : '0'})"
+  >
+    <Icon src={Down} size="50px" />
+  </button>
+  <div class="project-grid">
+    {#if isVisible}
+      {#each data.repos as item}
+        <ProjectCard {item} />
+      {/each}
+    {/if}
   </div>
 </section>
 
@@ -35,4 +65,16 @@
 
             @media (min-width: vars.$xl)
                 grid-template-columns: repeat(3, 1fr)
+
+        button
+            background-color: transparent
+            outline: none
+            border: none
+            border-radius: 100%
+            color: white
+            font-weight: bold
+            transition-duration: 300ms
+
+            &:hover
+                background: linear-gradient(320deg, vars.$color-accent 0%, vars.$color-tertiary 100%)
 </style>
