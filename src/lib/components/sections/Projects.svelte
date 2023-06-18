@@ -30,6 +30,7 @@
   </div>
   <button
     transition:spin|local={{ duration: 200 }}
+    aria-label="Show more projects"
     on:click={() => (isVisible = !isVisible)}
     style="transform: rotate({isVisible ? '180deg' : '0'})"
   >

@@ -23,7 +23,7 @@
   <div class="container">
     {#each contactArr as item}
       <div class="card">
-        <a href={item.url} target="_blank">
+        <a href={item.url} target="_blank" aria-label={item.name}>
           <Icon src={item.icon} size="36px" color="white" />
         </a>
       </div>
