@@ -74,6 +74,7 @@
             color: white
             font-weight: bold
             transition-duration: 300ms
+            cursor: pointer
 
             &:hover
                 background: linear-gradient(320deg, vars.$color-accent 0%, vars.$color-tertiary 100%)
