@@ -26,9 +26,7 @@ export const config = {
   }
 };
 
-export const load: PageServerLoad = async ({ fetch, params }) => {
-  console.log(params);
-
+export const load: PageServerLoad = async ({ fetch }) => {
   const res = await fetch('https://api.github.com/users/dhzdhd/repos?per_page=100', {
     headers: {
       'X-GitHub-Api-Version': '2022-11-28',
