@@ -1,16 +1,17 @@
 <script lang="ts">
+  import type { Response } from '../../../routes/+page.server';
   import GradientHeading from '../GradientHeading.svelte';
   import ProjectCard from '../ProjectCard.svelte';
+
+  export let data: Response;
 </script>
 
 <section id="projects">
   <GradientHeading text={'Projects'} alignment={'left'} />
   <div class="project-grid">
-    <ProjectCard />
-    <ProjectCard />
-    <ProjectCard />
-    <ProjectCard />
-    <ProjectCard />
+    {#each data.highlighted as item}
+      <ProjectCard {item} />
+    {/each}
   </div>
 </section>
 

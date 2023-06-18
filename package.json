@@ -34,6 +34,6 @@
   "type": "module",
   "dependencies": {
     "sass": "^1.55.0",
-    "svelte-icons": "^2.1.0"
+    "svelte-icons-pack": "^2.1.0"
   }
 }

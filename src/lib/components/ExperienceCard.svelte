@@ -26,7 +26,7 @@
         gap: 2rem
         border-radius: 2rem
         background: linear-gradient(180deg,transparentize(white, 0.96) 0%,transparentize(vars.$color-tertiary, 0.9)  100%)
-        color: white
+        color: vars.$color-primary-dark
 
         h3
             font-size: 1.2rem
@@ -45,4 +45,7 @@
             img
                 width: 20px
                 height: 20px
+
+        @media (prefers-color-scheme: dark)
+            color: vars.$color-primary-light
 </style>
