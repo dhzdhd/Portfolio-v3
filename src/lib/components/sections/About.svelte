@@ -23,6 +23,7 @@
     section
         display: flex
         flex-direction: column
+        padding-top: 5rem
         gap: 2rem
 
         div

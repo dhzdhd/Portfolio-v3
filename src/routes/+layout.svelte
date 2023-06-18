@@ -28,7 +28,7 @@
         display: flex
         flex-direction: column
         justify-content: center
-        gap: 10rem
+        gap: 5rem
 
         @media (prefers-color-scheme: dark)
             background-color: vars.$color-primary-dark

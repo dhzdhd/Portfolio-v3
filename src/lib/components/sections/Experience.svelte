@@ -40,6 +40,7 @@
     section
         display: flex
         flex-direction: column
+        padding-top: 5rem
         align-items: center
         gap: 2rem
 

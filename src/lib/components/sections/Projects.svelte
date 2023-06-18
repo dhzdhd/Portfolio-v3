@@ -4,7 +4,6 @@
   import GradientHeading from '../GradientHeading.svelte';
   import ProjectCard from '../ProjectCard.svelte';
   import Down from 'svelte-icons-pack/fi/FiArrowDown';
-  import Up from 'svelte-icons-pack/fi/FiArrowUp';
   import { elasticOut } from 'svelte/easing';
 
   function spin(node: any, { duration }: any) {
@@ -51,6 +50,7 @@
     section
         display: flex
         flex-direction: column
+        padding-top: 5rem
         align-items: center
         gap: 2rem
 
