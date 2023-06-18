@@ -24,8 +24,8 @@
 <section id="experience">
   <GradientHeading text={'Experience'} alignment={'right'} />
   <div class="exp-card">
-    <ExperienceCard title={'Languages'} />
-    <ExperienceCard title={'Frameworks'} />
+    <ExperienceCard title={'Languages'} type={'language'} />
+    <ExperienceCard title={'Frameworks'} type={'framework'} />
   </div>
   <div class="container">
     {#each nodes as node}

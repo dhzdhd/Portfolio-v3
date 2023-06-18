@@ -1,15 +1,16 @@
 <script lang="ts">
-  import { expArr } from '$lib/data';
+  import { expArr, type ExperienceType } from '$lib/data';
 
   export let title: string;
+  export let type: ExperienceType;
 </script>
 
 <div class="card">
   <h3>{title}</h3>
-  {#each expArr as item}
+  {#each expArr.filter((val) => val.type === type) as item}
     <div class="content">
-      <span>{item.lang}</span>
-      <img src={item.icon} alt={item.lang} />
+      <span>{item.name}</span>
+      <img src={item.icon} alt={item.name} />
     </div>
   {/each}
 </div>
