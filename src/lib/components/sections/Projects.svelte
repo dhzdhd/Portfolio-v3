@@ -71,6 +71,8 @@
             background-color: transparent
             outline: none
             border: none
+            width: 50px
+            height: 50px
             border-radius: 100%
             color: vars.$color-primary-dark
             font-weight: bold
