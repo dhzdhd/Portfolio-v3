@@ -41,7 +41,7 @@
         padding: 0rem 2rem
         border-radius: 2rem
         background: linear-gradient(180deg, transparentize(white, 0.96) 0%, transparentize(vars.$color-tertiary, 0.9)  100%)
-        color: white
+        color: vars.$color-primary-dark
         transition-duration: 300ms
         text-decoration: none
 
@@ -83,4 +83,8 @@
         &:hover
             background: linear-gradient(320deg, vars.$color-accent 0%, vars.$color-tertiary 100%)
             transform: scale(1.02)
+            color: vars.$color-primary-light
+
+        @media (prefers-color-scheme: dark)
+            color: vars.$color-primary-light
 </style>

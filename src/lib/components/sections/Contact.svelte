@@ -2,7 +2,7 @@
   import Icon from 'svelte-icons-pack';
   import GradientHeading from '../GradientHeading.svelte';
   import GitHub from 'svelte-icons-pack/vsc/VscGithub';
-  import Instagram from 'svelte-icons-pack/ai/AiOutlineInstagram';
+  import Instagram from 'svelte-icons-pack/bs/BsInstagram';
   import Discord from 'svelte-icons-pack/bs/BsDiscord';
 
   interface ContactInfo {
@@ -24,7 +24,7 @@
     {#each contactArr as item}
       <div class="card">
         <a href={item.url} target="_blank" aria-label={item.name}>
-          <Icon src={item.icon} size="36px" color="white" />
+          <Icon src={item.icon} size="36px" />
         </a>
       </div>
     {/each}
@@ -48,6 +48,12 @@
 
             .card
                 transition-duration: 300ms
+
+                a
+                    color: vars.$color-primary-dark
+
+                    @media (prefers-color-scheme: dark)
+                        color: vars.$color-primary-light
 
                 &:hover
                     transform: translateY(-0.5rem)

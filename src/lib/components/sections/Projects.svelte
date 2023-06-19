@@ -72,11 +72,15 @@
             outline: none
             border: none
             border-radius: 100%
-            color: white
+            color: vars.$color-primary-dark
             font-weight: bold
             transition-duration: 300ms
             cursor: pointer
 
             &:hover
                 background: linear-gradient(320deg, vars.$color-accent 0%, vars.$color-tertiary 100%)
+                color: vars.$color-primary-light
+
+            @media (prefers-color-scheme: dark)
+                color: vars.$color-primary-light
 </style>
