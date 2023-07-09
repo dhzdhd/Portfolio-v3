@@ -1,15 +1,19 @@
 <script lang="ts">
-  export let text: string;
+  export let text: string | undefined = undefined;
   export let alignment: 'left' | 'right';
 </script>
 
 <div>
-  {#if alignment === 'left'}
-    <h2>{text}</h2>
-    <span />
+  {#if typeof text !== 'undefined'}
+    {#if alignment === 'left'}
+      <h2>{text}</h2>
+      <span />
+    {:else}
+      <span />
+      <h2>{text}</h2>
+    {/if}
   {:else}
     <span />
-    <h2>{text}</h2>
   {/if}
 </div>
 

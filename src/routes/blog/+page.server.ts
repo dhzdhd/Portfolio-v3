@@ -7,12 +7,15 @@ export interface MdsvexFile {
 }
 
 export interface BlogPost {
-  slug: string;
   title: string;
   author: string;
   description: string;
   date: string;
   published: boolean;
+}
+
+export interface BlogPostWithSlug extends BlogPost {
+  slug: string;
 }
 
 export type MdsvexResolver = () => Promise<MdsvexFile>;
@@ -26,7 +29,7 @@ export const load: PageServerLoad = async () => {
         ({
           slug: '/blog/' + slugFromPath(path),
           ...(post as unknown as MdsvexFile).metadata
-        } as BlogPost)
+        } as BlogPostWithSlug)
     )
   );
 
