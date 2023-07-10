@@ -6,43 +6,27 @@ date: '09-07-2023'
 published: true
 ---
 
-Learning a language from scratch is tough. A good language is required to understand the basic concepts of programming.
+Learning a language from scratch is tough. A good language is required to understand the basic concepts of programming. Looking at `Hello World` examples in each language is a good place to start however, is not a good indication of whether a language is a good beginner language or not. Regardless,
 
 ## Python
+
+### Installation
+
+- Installation in Windows is as simple as downloading and running the installer. There is the extra bit of adding to PATH but in general, it's pretty easy to install Python.
+- In Linux, quite a few distributions come with Python pre-installed which makes the developers' job even easier.
+
+### Hello World
 
 ```python
 print("Hello World")
 ```
 
-This is a simple `Hello World` example in Python
+This is a simple `Hello World` example in Python. Note just how simple it is to start coding in Python. All you need is a `.py` file. No entrypoint needed, nor is a main method required. If you want quick prototyping, the REPL(Read Eval Print Loop) in the terminal is always available to you.
 
-HAH OeufheufheouahfoeOFHEOFH
+## JavaScript, TypeScript
 
-1. First item
-2. Second item
-3. Third item
+```js
+console.log("Hello World");
+```
 
-- First item
-- Second item
-- Third item
-
-[title](https://www.example.com)
-
-| Syntax | Description |
-| ----------- | ----------- |
-| Header | Title |
-| Paragraph | Text |
-
-
-Here's a sentence with a footnote. [^1]
-[^1]: This is the footnote.
-
-- [x] Write the press release
-- [ ] Update the website
-- [ ] Contact the media
-
-I need to highlight these ==very important words==.
-
-H~2~O
-
-X^2^
+Similar to the Python example above, less effort is required to start coding in JS. You can do some quick testing in the browser REPL or the node REPL

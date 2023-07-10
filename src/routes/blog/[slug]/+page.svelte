@@ -22,7 +22,7 @@
     @use '../../../styles/vars'
 
     .container
-        min-height: 100vh
+        min-height: calc(100vh - 4rem)
         padding: 4rem 0rem
         display: flex
         flex-direction: column
@@ -79,25 +79,37 @@
         @media(prefers-color-scheme: dark)
             color: vars.$color-primary-light
 
-    :global(.prose :is(p, a))
-        color: transparentize(vars.$color-primary-dark, 0.2)
-        font-size: 1.2rem
-
-        @media(prefers-color-scheme: dark)
-            color: transparentize(vars.$color-primary-light, 0.2)
-
     :global(.prose :not(pre) :is(code))
         font-size: 1.2rem
         padding: 0.1rem 0.3rem
         border-radius: 5px
         background-color: transparentize(vars.$color-primary-light, 0.9)
 
-    // :global(.prose :is(pre))
-    //     padding: 2rem 1rem
-    //     border-radius: 0.5rem
-    //     tab-size: 2
-    //     font-family: reset
-
     :global(.prose hr)
         margin: 1rem 0rem
+
+    :global(.prose table)
+        margin: 1rem 0rem
+
+    :global(.prose th)
+        color: vars.$color-accent
+
+    :global(.prose :is(table, th, td))
+        border: solid 1px
+        border-collapse: collapse
+        padding: 0.5rem 1rem
+        text-align: left
+
+    :global(.prose a)
+        color: vars.$color-accent
+
+        &:hover
+            text-decoration: none
+
+    :global(.prose :is(*))
+        color: transparentize(vars.$color-primary-dark, 0.2)
+        font-size: 1.2rem
+
+        @media(prefers-color-scheme: dark)
+            color: transparentize(vars.$color-primary-light, 0.2)
 </style>
