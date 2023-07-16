@@ -6,13 +6,13 @@
 </script>
 
 <nav>
-  <div
+  <button
     transition:fly={{ x: -200 }}
     class="button"
     on:click|stopPropagation={() => ($enabled = !$enabled)}
   >
     <Icon src={A} size={'2rem'} color={'white'} />
-  </div>
+  </button>
   {#if $enabled}
     <ul transition:fly={{ x: -200 }} class="mobile">
       <li>
@@ -55,6 +55,8 @@
             top: 1rem
             left: 1rem
             z-index: 100
+            border: none
+            background-color: transparent
 
         .mobile
             position: fixed
