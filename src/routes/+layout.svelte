@@ -4,6 +4,7 @@
   import { onMount } from 'svelte';
   import '../styles/global.sass';
   import '../styles/vars.sass';
+  import { enabled } from '../utils';
 
   onMount(() => ($isReady = true));
 </script>
@@ -11,6 +12,8 @@
 <svelte:head>
   <title>Portfolio</title>
 </svelte:head>
+
+<svelte:body on:click={() => ($enabled = false)} />
 
 <Header />
 <main>

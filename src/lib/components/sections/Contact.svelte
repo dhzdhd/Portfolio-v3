@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Icon from 'svelte-icons-pack';
+  import Icon from 'svelte-icons-pack/Icon.svelte';
   import GradientHeading from '../GradientHeading.svelte';
   import GitHub from 'svelte-icons-pack/vsc/VscGithub';
   import Instagram from 'svelte-icons-pack/bs/BsInstagram';

@@ -29,6 +29,9 @@
         gap: 1rem
         max-width: 70rem
         margin: auto
+        overflow: hidden
+        // white-space: nowrap
+        text-overflow: ellipsis
 
         span
             color: transparentize(vars.$color-primary-dark, 0.5)
@@ -41,10 +44,14 @@
         h1
             color: vars.$color-primary-dark
             text-align: center
-            font-size: 4rem
+            font-size: 2.5rem
+
 
             @media (prefers-color-scheme: dark)
                 color: vars.$color-primary-light
+
+            @media (min-width: vars.$sm)
+                font-size: 4rem
 
         .hr
             margin: 2rem 0rem
