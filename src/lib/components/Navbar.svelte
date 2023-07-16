@@ -7,9 +7,9 @@
 
 <nav>
   <button
-    transition:fly={{ x: -200 }}
     class="button"
     on:click|stopPropagation={() => ($enabled = !$enabled)}
+    style="transform: rotate({$enabled ? '90deg' : '0'})"
   >
     <Icon src={A} size={'2rem'} color={'white'} />
   </button>
@@ -57,18 +57,23 @@
             z-index: 100
             border: none
             background-color: transparent
+            transition-duration: 300ms
 
         .mobile
             position: fixed
-            // margin: 0rem 2rem
             display: flex
             flex-direction: column
-            border: solid 0.1rem white
+            // border: solid 0.1rem white
             border-radius: 2rem
             left: 1rem
             padding: 2rem
             gap: 1rem
-            top: 4rem
+            top: 5rem
+            background: linear-gradient(135deg, vars.$color-accent 0%, vars.$color-tertiary 100%)
+            // background-color: transparentize(vars.$color-primary-dark, 0.98)
+            // backdrop-filter: blur(10px)
+            // -webkit-backdrop-filter: blur(10px)
+
 
         .desktop
             display: none

@@ -4,18 +4,7 @@
   import GradientHeading from '../GradientHeading.svelte';
   import ProjectCard from '../ProjectCard.svelte';
   import Down from 'svelte-icons-pack/fi/FiArrowDown';
-  import { elasticOut } from 'svelte/easing';
-
-  function spin(node: any, { duration }: any) {
-    return {
-      duration,
-      css: (t: any) => {
-        const eased = elasticOut(t);
-
-        return `transform: rotate(${eased * 180}deg)`;
-      }
-    };
-  }
+  import { spin } from '../../../utils';
 
   export let data: Response;
   let isVisible = false;
@@ -29,7 +18,7 @@
     {/each}
   </div>
   <button
-    transition:spin|local={{ duration: 200 }}
+    transition:spin|local={{ duration: 200, amount: 180, type: 'elasticOut' }}
     aria-label="Show more projects"
     on:click={() => (isVisible = !isVisible)}
     style="transform: rotate({isVisible ? '180deg' : '0'})"
