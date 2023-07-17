@@ -1,8 +1,8 @@
 import type { BlogPost } from '../+page.server';
-import type { PageServerLoad } from './$types';
+import type { PageLoad } from './$types';
 import { error } from '@sveltejs/kit';
 
-export const load: PageServerLoad = async ({ params }) => {
+export const load: PageLoad = async ({ params }) => {
   try {
     const post = await import(`../../../posts/${params.slug}.md`);
 
