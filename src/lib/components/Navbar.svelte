@@ -69,17 +69,15 @@
             position: fixed
             display: flex
             flex-direction: column
-            // border: solid 0.1rem white
             border-radius: 2rem
             left: 1rem
             padding: 2rem
             gap: 1rem
             top: 5rem
-            background: linear-gradient(135deg, vars.$color-accent 0%, vars.$color-tertiary 100%)
-            // background-color: transparentize(vars.$color-primary-dark, 0.98)
-            // backdrop-filter: blur(10px)
-            // -webkit-backdrop-filter: blur(10px)
-
+            border: solid 0.1rem vars.$color-primary-light
+            background-clip: padding-box
+            background:  linear-gradient(135deg, vars.$color-accent 0%, vars.$color-tertiary 100%)
+            backdrop-filter: blur(10px)
 
         .desktop
             display: none
