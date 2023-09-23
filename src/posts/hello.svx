@@ -1,10 +1,16 @@
 ---
 title: 'The best beginner programming language'
-description: "A test blog post"
+description: 'A test blog post'
 author: 'dhzdhd'
 date: '09-07-2023'
 published: true
 ---
+
+<script>
+	import Image from "$lib/components/blog/Image.svelte";
+</script>
+
+<Image src="https://th.bing.com/th/id/OIG.Gf_p9FGNZR35XBtt5Cnp?pid=ImgGn" alt="hello" />
 
 Learning a language from scratch is tough. A good language is required to understand the basic concepts of programming. Looking at `Hello World` examples in each language is a good place to start however, is not a good indication of whether a language is a good beginner language or not. Regardless,
 
