@@ -25,6 +25,7 @@
   >
     <Icon src={Down} size="50px" />
   </button>
+  <!-- FIXME Broken css due to content, not card -->
   {#if isVisible}
     <div class="project-grid">
       {#each data.repos as item}
@@ -41,12 +42,12 @@
         display: flex
         flex-direction: column
         padding-top: 5rem
+        max-width: 100vw
         align-items: center
         gap: 2rem
 
         .project-grid
             display: grid
-            width: 100%
             grid-template-columns: repeat(1, 1fr)
             gap: 1rem
 

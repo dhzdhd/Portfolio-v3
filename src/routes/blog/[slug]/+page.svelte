@@ -28,9 +28,9 @@
         flex-direction: column
         gap: 1rem
         max-width: 70rem
+        width: min(calc(100vw - 4rem), 100%)
         margin: auto
         overflow: hidden
-        // white-space: nowrap
         text-overflow: ellipsis
 
         span
@@ -112,6 +112,10 @@
 
         &:hover
             text-decoration: none
+
+    :global(.prose pre)
+        width: min(calc(100vw - 4rem), 100%)
+        overflow: hidden
 
     :global(.prose :is(*))
         color: transparentize(vars.$color-primary-dark, 0.2)

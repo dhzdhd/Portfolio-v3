@@ -36,7 +36,7 @@
     .card
         display: grid
         grid-template-rows: repeat(3, 1fr)
-        width: 100%
+        max-width: 100%
         height: 14rem
         padding: 0rem 2rem
         border-radius: 2rem

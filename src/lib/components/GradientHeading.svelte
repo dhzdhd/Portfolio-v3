@@ -22,7 +22,7 @@
 
     div
         display: flex
-        width: 100%
+        width: min(calc(100vw - 4rem), 100%)
         flex-direction: row
         justify-content: space-between
         align-items: center
