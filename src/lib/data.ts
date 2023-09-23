@@ -37,11 +37,11 @@ export const expArr: ExperienceInfo[] = [
     icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg',
     type: 'language'
   },
-  {
-    name: 'julia',
-    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/julia/julia-original.svg',
-    type: 'language'
-  },
+  // {
+  //   name: 'julia',
+  //   icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/julia/julia-original.svg',
+  //   type: 'language'
+  // },
   {
     name: 'c',
     icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg',
@@ -52,11 +52,11 @@ export const expArr: ExperienceInfo[] = [
     icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fsharp/fsharp-original.svg',
     type: 'language'
   },
-  {
-    name: 'rust',
-    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rust/rust-plain.svg',
-    type: 'language'
-  },
+  // {
+  //   name: 'rust',
+  //   icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rust/rust-plain.svg',
+  //   type: 'language'
+  // },
   {
     name: 'flutter',
     icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg',

@@ -76,7 +76,7 @@
             top: 5rem
             border: solid 0.1rem vars.$color-primary-light
             background-clip: padding-box
-            background:  linear-gradient(135deg, vars.$color-accent 0%, vars.$color-tertiary 100%)
+            background: linear-gradient(180deg, transparentize(white, 0.96) 0%, transparentize(vars.$color-tertiary, 0.9)  100%)
             backdrop-filter: blur(10px)
 
         .desktop

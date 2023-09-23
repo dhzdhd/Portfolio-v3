@@ -13,5 +13,5 @@
 <style lang="sass">
     section
         height: 100vh
-        padding: 3rem 2rem
+        padding: 4rem 2rem
 </style>
