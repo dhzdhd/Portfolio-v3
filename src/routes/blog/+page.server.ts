@@ -12,6 +12,7 @@ export interface BlogPost {
   description: string;
   date: string;
   published: boolean;
+  tags: string[];
 }
 
 export interface BlogPostWithSlug extends BlogPost {

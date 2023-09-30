@@ -4,6 +4,9 @@ description: 'A test blog post'
 author: 'dhzdhd'
 date: '09-07-2023'
 published: true
+tags:
+  - test
+  - fun
 ---
 
 <script>
