@@ -1,6 +1,5 @@
 <script lang="ts">
   import BlogCard from '$lib/components/blog/BlogCard.svelte';
-  import type { BlogPostWithSlug } from './+page.server';
 
   export let data;
 
