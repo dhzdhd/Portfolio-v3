@@ -1,6 +1,6 @@
 <script lang="ts">
-  import Icon from 'svelte-icons-pack';
-  import A from 'svelte-icons-pack/ai/AiOutlineMenu';
+  import { Icon } from 'svelte-icons-pack';
+  import { AiOutlineMenu as Menu } from 'svelte-icons-pack/ai';
   import { fly } from 'svelte/transition';
   import { enabled } from '../../utils';
 </script>
@@ -11,7 +11,7 @@
     on:click|stopPropagation={() => ($enabled = !$enabled)}
     style="transform: rotate({$enabled ? '90deg' : '0'})"
   >
-    <Icon src={A} size={'2rem'} color={'white'} />
+    <Icon src={Menu} size={'2rem'} color={'white'} />
   </button>
   {#if $enabled}
     <ul transition:fly={{ x: -200 }} class="mobile">

@@ -1,8 +1,8 @@
 <script lang="ts">
-  import Icon from 'svelte-icons-pack';
+  import { Icon } from 'svelte-icons-pack';
   import type { RepoModel } from '../../routes/proxy+page.server';
-  import VscRepoForked from 'svelte-icons-pack/vsc/VscRepoForked';
-  import Star from 'svelte-icons-pack/vsc/VscStarEmpty';
+  import { VscRepoForked as Fork } from 'svelte-icons-pack/vsc';
+  import { VscStarEmpty as Star } from 'svelte-icons-pack/vsc';
   import { fly } from 'svelte/transition';
 
   export let item: RepoModel;
@@ -11,7 +11,7 @@
 <a transition:fly={{ y: 200, duration: 300 }} class="card" href={item.url} target="_blank">
   <div class="top">
     {#if item.isFork}
-      <Icon src={VscRepoForked} size="16" />
+      <Icon src={Fork} size="16" />
     {/if}
     <span>{item.name}</span>
   </div>
@@ -19,7 +19,7 @@
   <div class="bottom left">
     <span>{item.language ?? ''}</span>
     <div class="bottom-container center">
-      <Icon src={VscRepoForked} size="16" />
+      <Icon src={Fork} size="16" />
       <span>{item.forks}</span>
     </div>
     <div class="bottom-container right">

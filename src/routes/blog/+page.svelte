@@ -53,9 +53,13 @@
             margin-bottom: 2rem
             background: linear-gradient(180deg,transparentize(white, 0.96) 0%,transparentize(vars.$color-tertiary, 0.9)  100%)
             border: solid 0.1rem
-            border-color: vars.$color-tertiary
+            border-color: transparent
+            outline: none
             border-radius: 2rem
             font-size: 1.5rem
             padding: 0rem 1rem
             color: vars.$color-primary-light
+
+            &:focus
+              border-color: vars.$color-tertiary
 </style>

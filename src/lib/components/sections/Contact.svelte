@@ -1,9 +1,9 @@
 <script lang="ts">
-  import Icon from 'svelte-icons-pack/Icon.svelte';
+  import { Icon } from 'svelte-icons-pack';
   import GradientHeading from '../GradientHeading.svelte';
-  import GitHub from 'svelte-icons-pack/vsc/VscGithub';
-  import Instagram from 'svelte-icons-pack/bs/BsInstagram';
-  import Discord from 'svelte-icons-pack/bs/BsDiscord';
+  import { VscGithub as GitHub } from 'svelte-icons-pack/vsc';
+  import { BsInstagram as Instagram } from 'svelte-icons-pack/bs';
+  import { BsDiscord as Discord } from 'svelte-icons-pack/bs';
 
   interface ContactInfo {
     name: string;

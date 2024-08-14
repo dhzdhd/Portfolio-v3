@@ -1,9 +1,9 @@
 <script lang="ts">
-  import Icon from 'svelte-icons-pack';
+  import { Icon } from 'svelte-icons-pack';
   import type { Response } from '../../../routes/+page.server';
   import GradientHeading from '../GradientHeading.svelte';
   import ProjectCard from '../ProjectCard.svelte';
-  import Down from 'svelte-icons-pack/fi/FiArrowDown';
+  import { FiArrowDown as Down } from 'svelte-icons-pack/fi';
   import { spin } from '../../../utils';
 
   export let data: Response;

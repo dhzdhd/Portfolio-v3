@@ -1,4 +1,3 @@
-import adapter from '@sveltejs/adapter-vercel';
 import { mdsvex } from 'mdsvex';
 import preprocess from 'svelte-preprocess';
 
@@ -13,9 +12,6 @@ const config = {
     }),
     preprocess()
   ],
-  kit: {
-    adapter: adapter()
-  }
 };
 
 export default config;
