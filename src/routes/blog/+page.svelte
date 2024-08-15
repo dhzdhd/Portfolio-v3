@@ -24,13 +24,15 @@
     id="search"
     placeholder="Search"
   />
-  {#if posts.length === 0}
-    <h2>No posts found!</h2>
-  {:else}
-    {#each posts as item}
-      <BlogCard data={item} />
-    {/each}
-  {/if}
+  <div>
+    {#if posts.length === 0}
+      <h2>No posts found!</h2>
+    {:else}
+      {#each posts as item}
+        <BlogCard data={item} />
+      {/each}
+    {/if}
+  </div>
 </section>
 
 <style lang="sass">
@@ -40,12 +42,17 @@
         height: 100vh
         padding: 4rem 2rem
 
-        h2
-            font-size: 3rem
-            text-align: center
-            background: linear-gradient(135deg, vars.$color-accent 0%, vars.$color-tertiary 100%)
-            -webkit-background-clip: text
-            -webkit-text-fill-color: transparent
+        div
+          display: flex
+          flex-direction: column
+          gap: 1rem
+
+          h2
+              font-size: 3rem
+              text-align: center
+              background: linear-gradient(135deg, vars.$color-accent 0%, vars.$color-tertiary 100%)
+              -webkit-background-clip: text
+              -webkit-text-fill-color: transparent
 
         input
             height: 3rem

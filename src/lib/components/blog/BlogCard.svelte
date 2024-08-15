@@ -4,7 +4,12 @@
   export let data: BlogPostWithSlug;
 </script>
 
-<a class="card" href={data.slug}>
+<a
+  data-sveltekit-preload-data="hover"
+  data-sveltekit-preload-code="eager"
+  class="card"
+  href={data.slug}
+>
   <div class="subtitle">
     <h3>{data.date}</h3>
     <div class="tags">

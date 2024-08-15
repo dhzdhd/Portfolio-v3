@@ -1,0 +1,29 @@
+---
+title: 'A Curated List of Programming Resources'
+description: 'A list of resources that I prefer to use for everything programming related which includes DSA, Data Science, Development, DevOps, etc'
+author: 'dhzdhd'
+date: '15-08-2024'
+published: true
+tags:
+  - programming
+  - misc
+---
+
+<script>
+	import Image from "$lib/components/blog/Image.svelte";
+    import Note from "$lib/components/blog/Note.svelte"
+</script>
+
+<Note type="warning" desc="The page is currently under development and content has not been finalised yet. The page is currently under development and content has not been finalised yet. The page is currently under development and content has not been finalised yet. " />
+
+<Image src="\images\courses-list_word-cloud.png" alt="Programming word cloud" position="between" />
+
+A list of resources that I prefer to use for everything programming related which includes DSA, Data Science, Development, DevOps, etc.
+
+## Table Of Contents
+
+## Data Science
+
+### Natural Language Processing
+
+- [Book - Jurafsky]()

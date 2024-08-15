@@ -13,7 +13,7 @@
   margin-bottom: 2rem
 
 .between
-  margin: 1rem 0rem
+  margin: 2rem 0rem
 
 div
   height: 25rem
