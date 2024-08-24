@@ -4,6 +4,7 @@ import remarkToc from 'remark-toc';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import adapter from '@sveltejs/adapter-auto';
+import rehypePrettyCode from 'rehype-pretty-code';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -15,9 +16,10 @@ const config = {
   extensions: ['.svelte', '.svx', '.md'],
   preprocess: [
     mdsvex({
+      // highlight: false,
       extensions: ['.md', '.svx'],
       remarkPlugins: [remarkToc],
-      rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings]
+      rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings, rehypePrettyCode]
     }),
     preprocess()
   ]

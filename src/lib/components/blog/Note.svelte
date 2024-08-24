@@ -3,7 +3,7 @@
   import { capitalize } from '../../../utils';
   import type { IconType } from 'svelte-icons-pack';
   import { Icon } from 'svelte-icons-pack';
-  import { BsMarkerTip as Tip } from 'svelte-icons-pack/bs';
+  import { BsQuestionCircle as Note, BsMarkerTip as Tip } from 'svelte-icons-pack/bs';
   type NoteType = 'note' | 'tip' | 'important' | 'warning' | 'caution';
 
   export let type: NoteType;
@@ -13,7 +13,7 @@
     warning: Warning,
     caution: Warning,
     important: Warning,
-    note: Warning,
+    note: Note,
     tip: Tip
   };
 </script>
@@ -72,7 +72,7 @@
             place-self: center
 
     p
-      padding: 1rem 1rem
+      padding: 0rem 1rem 1rem 1rem
 
   .caution
     color: vars.$color-caution

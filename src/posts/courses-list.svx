@@ -14,7 +14,7 @@ tags:
     import Note from "$lib/components/blog/Note.svelte"
 </script>
 
-<Note type="warning" desc="The page is currently under development and content has not been finalised yet. The page is currently under development and content has not been finalised yet. The page is currently under development and content has not been finalised yet. " />
+<Note type="note" desc="This post is constantly being updated. The date of creation does not reflect the activity of the post." />
 
 <Image src="\images\courses-list_word-cloud.png" alt="Programming word cloud" position="between" />
 
