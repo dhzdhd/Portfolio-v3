@@ -1,6 +1,7 @@
 <script lang="ts">
   import GradientHeading from '$lib/components/GradientHeading.svelte';
   import type { PageData } from './$types';
+  import Giscus from '@giscus/svelte';
 
   export let data: PageData;
 </script>
@@ -16,6 +17,24 @@
       <svelte:component this={data.component} />
     </div>
   </article>
+  <div class="comments-container">
+    <Giscus
+      id="comments"
+      repo="dhzdhd/Portfolio-v3"
+      repoId="R_kgDOIRSm-A"
+      category="Announcements"
+      categoryId="DIC_kwDOIRSm-M4CiQdh"
+      mapping="pathname"
+      term="Welcome to giscus comments!"
+      strict="0"
+      reactionsEnabled="1"
+      emitMetadata="0"
+      inputPosition="top"
+      theme="dark_dimmed"
+      lang="en"
+      loading="lazy"
+    />
+  </div>
 </div>
 
 <style lang="sass">
