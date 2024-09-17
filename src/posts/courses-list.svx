@@ -11,7 +11,7 @@ tags:
 
 <script>
 	import Image from "$lib/components/blog/Image.svelte";
-    import Note from "$lib/components/blog/Note.svelte"
+  import Note from "$lib/components/blog/Note.svelte"
 </script>
 
 <Note type="note" desc="This post is constantly being updated. The date of creation does not reflect the activity of the post." />

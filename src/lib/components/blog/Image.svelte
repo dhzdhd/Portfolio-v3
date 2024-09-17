@@ -16,14 +16,14 @@
   margin: 2rem 0rem
 
 div
-  height: 25rem
+  display: flex
+  justify-content: center
 
   img
     width: min(calc(100vw - 4rem), 100%)
     transition-duration: 300ms
-    display: flex
-    max-height: 25rem
-    object-fit: cover
+    height: 25rem
+    object-fit: contain
 
     &:hover
         transform: scale(1.1)

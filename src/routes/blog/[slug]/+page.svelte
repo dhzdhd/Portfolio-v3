@@ -77,9 +77,12 @@
 
         article
             margin-inline: auto
+            text-wrap: wrap
+            width: 100%
 
             .prose
                 padding: 0rem 0rem
+                text-wrap: wrap
 
     :global(.prose :is(h1, h2, h3, h4, h5, h6))
         color: vars.$color-primary-dark
@@ -97,6 +100,10 @@
 
     :global(.prose h3)
         font-size: 1.2rem
+
+    :global(.prose p)
+        line-height: 1.6rem
+        margin-bottom: 0.3rem
 
     :global(.prose :is(ul, ol))
         padding: 0.5rem 1rem

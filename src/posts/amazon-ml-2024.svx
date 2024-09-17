@@ -1,0 +1,128 @@
+---
+title: 'Amazon ML 2024 Hackathon'
+description: 'My experience, the approaches I took and what I think about the hackathon'
+author: 'dhzdhd'
+date: '17-09-2024'
+published: true
+tags:
+  - programming
+  - hackathon
+---
+
+
+<script>
+  import Image from "$lib/components/blog/Image.svelte";
+  import Note from "$lib/components/blog/Note.svelte"
+</script>
+<!-- <iframe frameborder="0" scrolling="no" style="width:100vw; height:604px;" allow="clipboard-write" src="https://emgithub.com/iframe.html?target=https%3A%2F%2Fgithub.com%2Fdhzdhd%2Famazonml-2024%2Fblob%2Fmaster%2Fapp%2Fsrc%2Fpostprocess.py%23L106-L130&style=base16%2Fmaterial-darker&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on"></iframe> -->
+
+# Table of Contents
+
+# About
+
+Amazon ML Hackathon is an annual machine learning based hackathon wherein students from colleges all over India can compete to get cash prizes and interview offers from Amazon.
+
+My team consisted of me and [nugget-cloud](https://github.com/nugget-cloud)
+
+# The task at hand
+
+Given a dataset of 133,000 images, find the relevant measurements in the image and format it according to the guidelines.
+
+The dataset looks something like [this](https://github.com/dhzdhd/amazonml-2024/blob/master/app/dataset/sample_test.csv)
+
+
+# Approaches for inference
+
+## Semantic segmentation
+
+Use semantic text segmentation to segment out the text in the image. This approach was not explored.
+
+## OCR + NER + Classification
+
+Use OCR to extract text, NER to get all the measurements from the text and if multiple exist, classification to figure out the relevant measurement needed. The problem with this approach was that if there were multiple measurements in the same image and all of them were say, dimensions, it would have been very hard to classify the measurement into one of height, depth or width.
+
+We did implement this to some extent but as the [notebook](https://github.com/dhzdhd/amazonml-2024/blob/master/app/notebooks/ocr_ner.ipynb) shows, we decided that this was not the best approach to take
+
+## VLM
+
+Use a visual language model to get all the measurements through the magic of LLM's.
+
+VLM's usually consist of 3 models connected to each other - an image encoder, a connection module and a LLM.
+The figure below shows the high level architecture of a VLM.
+<Image src="\images\amazon-blip2_architecture.jpg" alt="BLIP 2 architecture" position="between"/>
+This is the approach we eventually chose due to how easy it was to implement and how effective the answers were.
+
+We tried a number of models in the limited time that we had.
+
+- [MoonDream2](https://huggingface.co/vikhyatk/moondream2)
+- [Llava7B](https://huggingface.co/llava-hf/llava-1.5-7b-hf)
+- [BLIP](https://huggingface.co/Salesforce/blip-vqa-base)
+- [BLIP2](https://huggingface.co/Salesforce/blip2-opt-2.7b)
+- [PaliGemma3B (224x224)](https://huggingface.co/google/paligemma-3b-pt-224)
+
+# PaliGemma architecture
+
+[PaliGemma](https://arxiv.org/pdf/2407.07726) is a SOTA VLM model.
+It follows the same architecture as other VLM's.
+The team at DeepMind chose SigLIP as the image encoder, a simple linear layer as the connection module and Gemma as the LLM.
+The high level architecture is given below
+<Image src="\images\amazon-paligemma_architecture.png" alt="PaliGemma architecture" position="between"/>
+
+# Preprocessing
+
+The dataset needed no cleaning, out of the few samples we manually checked, all the data was accurate, without null values.
+
+Amazon provided a script to download all the images in a dataset but given that there were a hundred thousand of them it would be infeasible to download, both for the network and storage.
+Instead, we opted to stream the binary data from the image in during inference and use it then and there without storing it.
+
+The image required resizing to `224x224` dimensions as PaliGemma requires a cropped image to be passed for inference (it is trained on those dimensions).
+We considered cropping the image or splitting it into parts and passing as batches but both of these could lead to loss in critical information as the text in an image is usually localised to a few pixels in the image.
+
+We thought of some approaches to improve the quality of the resized image as `224x224` implies a low resolution image which can reduce the quality of the output.
+We tried image sharpening but eventually decided on upsampling (the Lanzcos filter) instead as it gave better outputs.
+
+# Prompting
+
+Before we read the [research paper](https://arxiv.org/pdf/2407.07726), we chose a simple prompt (we do not know prompt engineering)
+```python
+# PaliGemma uses `\n` as a separator and hence every prompt must include it at the end.
+prompt = f'What is the item {ent_type}?\n'
+```
+wherein `ent_type` is the entity type (type of measurement - weight, height, etc)
+
+There obviously was room for improvement.
+Next, we added `Include the unit too` because the output required non abbreviated units and the VLM forgot to add units at times.
+Interestingly, this reduced the quality and accuracy of the output.
+
+We then implemented the prompt used in the paper - adding a `answer en` as a prefix but did not see a lot of improvement over the initial prompt.
+
+# Finetuning the VLM
+
+Finetuning the VLM was out of question.
+The train dataset provided had 200,000+ images in it.
+Training a model, even if it is finetuning a pretrained VLM, takes a lot more time than inference and hence was not possible for this challenge.
+
+# Improvements that could have been made
+
+- 4 bit quantization of the VLM which would decrease the model size and increase the inference speed. But this does come at the cost of accuracy as the weights are now represented in a lower precision format.
+- Use of MLflow to track all the model outputs and changes between them. This required us to host an instance of the MLflow tracking server but decided not to due to time constraints.
+- Image text super-resolution as a preprocessing step to improve text quality but yet again, this requires more time and compute.
+- A bigger VLM/LLM, possibly Llava7B which would improve results.
+
+# The problem with LLM's
+
+A common recurring theme with all the VLM models I listed was that all of them took way too long to run on a 133,000 dataset of images.
+The fastest of them, the PaliGemma model took 0.5 seconds per image on a Nvidia P100 GPU hosted on Kaggle.
+Scaling that up to 133,000 images meant that just inference alone would take nearly **19 hours**.
+Given that we had to search for the appropriate models, having near no experience in this field, we would have no time left to make a submission for the hackathon which is exactly what happened with us.
+
+Yet another problem was hallucinations - the LLM returning a random measurement when there was none in the image passed and the inability of the 3B parameter model to correctly distinguish between height, width and depth in an image or a similar measurement which included multiple components.
+
+# My thoughts
+
+I like ML hackathons more than dev hackathons because I believe that dev hackathons promote half baked, bad code/architecture/security due to the time constraints, none of which are a problem with ML code.
+I do believe that the VLM was the way to go over the OCR methods.
+
+However the need for better non-free GPU's which are obscenely costly to run the VLM's proved to be a barrier for us to do well in this hackathon.
+Pay to win of sorts.
+Of course, there are teams who used the OCR method and got a decent accuracy but when you choose an approach in a hackathon, you gotta stick to it due to time constraints which ultimately led to us missing the submission.
