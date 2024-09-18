@@ -14,7 +14,6 @@ tags:
   import Image from "$lib/components/blog/Image.svelte";
   import Note from "$lib/components/blog/Note.svelte"
 </script>
-<!-- <iframe frameborder="0" scrolling="no" style="width:100vw; height:604px;" allow="clipboard-write" src="https://emgithub.com/iframe.html?target=https%3A%2F%2Fgithub.com%2Fdhzdhd%2Famazonml-2024%2Fblob%2Fmaster%2Fapp%2Fsrc%2Fpostprocess.py%23L106-L130&style=base16%2Fmaterial-darker&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on"></iframe> -->
 
 # Table of Contents
 
@@ -49,7 +48,9 @@ Use a visual language model to get all the measurements through the magic of LLM
 
 VLM's usually consist of 3 models connected to each other - an image encoder, a connection module and a LLM.
 The figure below shows the high level architecture of a VLM.
+
 <Image src="\images\amazon-blip2_architecture.jpg" alt="BLIP 2 architecture" position="between"/>
+
 This is the approach we eventually chose due to how easy it was to implement and how effective the answers were.
 
 We tried a number of models in the limited time that we had.
