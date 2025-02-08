@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { stopPropagation } from 'svelte/legacy';
+
   import { Icon } from 'svelte-icons-pack';
   import { AiOutlineMenu as Menu } from 'svelte-icons-pack/ai';
   import { fly } from 'svelte/transition';
@@ -8,7 +10,7 @@
 <nav>
   <button
     class="button"
-    on:click|stopPropagation={() => ($enabled = !$enabled)}
+    onclick={stopPropagation(() => ($enabled = !$enabled))}
     style="transform: rotate({$enabled ? '90deg' : '0'})"
   >
     <Icon src={Menu} size={'2rem'} color={'white'} />

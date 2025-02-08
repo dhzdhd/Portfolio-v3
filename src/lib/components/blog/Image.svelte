@@ -1,7 +1,11 @@
 <script lang="ts">
-  export let src: string;
-  export let alt: string;
-  export let position: 'start' | 'between' = 'start';
+  interface Props {
+    src: string;
+    alt: string;
+    position?: 'start' | 'between';
+  }
+
+  let { src, alt, position = 'start' }: Props = $props();
 </script>
 
 <div class={position}>

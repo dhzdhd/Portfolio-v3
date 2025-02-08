@@ -1,10 +1,10 @@
 <script lang="ts">
   import BlogCard from '$lib/components/blog/BlogCard.svelte';
 
-  export let data;
+  let { data } = $props();
 
-  let posts = data.posts;
-  let search = '';
+  let posts = $state(data.posts);
+  let search = $state('');
 
   const filter = () => {
     if (search.trim() === '') {
@@ -18,7 +18,7 @@
 <section>
   <input
     bind:value={search}
-    on:input={filter}
+    oninput={filter}
     type="search"
     name="search"
     id="search"

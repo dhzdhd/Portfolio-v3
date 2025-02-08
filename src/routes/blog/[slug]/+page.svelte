@@ -3,7 +3,11 @@
   import type { PageData } from './$types';
   import Giscus from '@giscus/svelte';
 
-  export let data: PageData;
+  interface Props {
+    data: PageData;
+  }
+
+  let { data }: Props = $props();
 </script>
 
 <div class="container">
@@ -14,7 +18,7 @@
   </div>
   <article>
     <div class="prose">
-      <svelte:component this={data.component} />
+      <data.component />
     </div>
   </article>
   <div class="comments-container">

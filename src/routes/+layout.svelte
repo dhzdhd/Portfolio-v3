@@ -5,6 +5,12 @@
   import '../styles/global.sass';
   import '../styles/vars.sass';
   import { enabled } from '../utils';
+  
+  interface Props {
+    children?: import('svelte').Snippet;
+  }
+
+  let { children }: Props = $props();
 
   onMount(() => ($isReady = true));
 </script>
@@ -13,11 +19,11 @@
   <title>Portfolio</title>
 </svelte:head>
 
-<svelte:body on:click={() => ($enabled = false)} />
+<svelte:body onclick={() => ($enabled = false)} />
 
 <Header />
 <main>
-  <slot />
+  {@render children?.()}
 </main>
 
 <style lang="sass">

@@ -1,6 +1,10 @@
 <script lang="ts">
-  export let title: string;
-  export let url: string;
+  interface Props {
+    title: string;
+    url: string;
+  }
+
+  let { title, url }: Props = $props();
 </script>
 
 <a href={url} target="_blank" rel="noreferrer noopener">{title}</a>

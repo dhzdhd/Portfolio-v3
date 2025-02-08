@@ -1,7 +1,11 @@
 <script lang="ts">
   import type { IconMetadata } from '$lib/data';
 
-  export let iconData: IconMetadata;
+  interface Props {
+    iconData: IconMetadata;
+  }
+
+  let { iconData }: Props = $props();
   let colored = iconData.segment === 'plain';
 </script>
 

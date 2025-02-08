@@ -6,8 +6,12 @@
   import { BsQuestionCircle as Note, BsMarkerTip as Tip } from 'svelte-icons-pack/bs';
   type NoteType = 'note' | 'tip' | 'important' | 'warning' | 'caution';
 
-  export let type: NoteType;
-  export let desc: string;
+  interface Props {
+    type: NoteType;
+    desc: string;
+  }
+
+  let { type, desc }: Props = $props();
 
   const iconMap: Record<NoteType, IconType> = {
     warning: Warning,
@@ -19,7 +23,7 @@
 </script>
 
 <div class={`container ${type}`}>
-  <div class="hr" />
+  <div class="hr"></div>
   <div class="title">
     <div class="icon">
       <Icon size="1.8rem" src={iconMap[type]} />

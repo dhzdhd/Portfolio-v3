@@ -1,8 +1,12 @@
 <script lang="ts">
   import { expArr, type ExperienceType } from '$lib/data';
 
-  export let title: string;
-  export let type: ExperienceType;
+  interface Props {
+    title: string;
+    type: ExperienceType;
+  }
+
+  let { title, type }: Props = $props();
 </script>
 
 <div class="card">

@@ -5,7 +5,11 @@
   import { VscStarEmpty as Star } from 'svelte-icons-pack/vsc';
   import { fly } from 'svelte/transition';
 
-  export let item: RepoModel;
+  interface Props {
+    item: RepoModel;
+  }
+
+  let { item }: Props = $props();
 </script>
 
 <a transition:fly={{ y: 200, duration: 300 }} class="card" href={item.url} target="_blank">

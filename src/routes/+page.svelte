@@ -6,7 +6,11 @@
   import Projects from '$lib/components/sections/Projects.svelte';
   import type { Response } from './+page.server';
 
-  export let data: Response;
+  interface Props {
+    data: Response;
+  }
+
+  let { data }: Props = $props();
 </script>
 
 <Landing />

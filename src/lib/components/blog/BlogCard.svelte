@@ -1,7 +1,11 @@
 <script lang="ts">
   import type { BlogPostWithSlug } from '../../../routes/blog/proxy+page.server';
 
-  export let data: BlogPostWithSlug;
+  interface Props {
+    data: BlogPostWithSlug;
+  }
+
+  let { data }: Props = $props();
 </script>
 
 <a

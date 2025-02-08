@@ -1,19 +1,23 @@
 <script lang="ts">
-  export let text: string | undefined = undefined;
-  export let alignment: 'left' | 'right';
+  interface Props {
+    text?: string | undefined;
+    alignment: 'left' | 'right';
+  }
+
+  let { text = undefined, alignment }: Props = $props();
 </script>
 
 <div>
   {#if typeof text !== 'undefined'}
     {#if alignment === 'left'}
       <h2>{text}</h2>
-      <span />
+      <span></span>
     {:else}
-      <span />
+      <span></span>
       <h2>{text}</h2>
     {/if}
   {:else}
-    <span />
+    <span></span>
   {/if}
 </div>
 

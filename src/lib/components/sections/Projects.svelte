@@ -6,8 +6,12 @@
   import { FiArrowDown as Down } from 'svelte-icons-pack/fi';
   import { spin } from '../../../utils';
 
-  export let data: Response;
-  let isVisible = false;
+  interface Props {
+    data: Response;
+  }
+
+  let { data }: Props = $props();
+  let isVisible = $state(false);
 </script>
 
 <section id="projects">
@@ -20,7 +24,7 @@
   <button
     transition:spin|local={{ duration: 200, amount: 180, type: 'elasticOut' }}
     aria-label="Show more projects"
-    on:click={() => (isVisible = !isVisible)}
+    onclick={() => (isVisible = !isVisible)}
     style="transform: rotate({isVisible ? '180deg' : '0'})"
   >
     <Icon src={Down} size="50px" />
