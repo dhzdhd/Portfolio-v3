@@ -5,6 +5,7 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 import { createHighlighter } from 'shiki';
 import remarkCodeTitles from "remark-flexible-code-titles";
+import adapter from '@sveltejs/adapter-vercel';
 // import rehypePrettyCode from 'rehype-pretty-code';
 // import {
 //   transformerCopyButton,
@@ -14,6 +15,7 @@ import remarkCodeTitles from "remark-flexible-code-titles";
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
   kit: {
+    adapter: adapter({})
   },
   extensions: ['.svelte', '.svx', '.md'],
   preprocess: [
