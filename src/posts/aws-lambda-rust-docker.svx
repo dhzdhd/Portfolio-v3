@@ -1,0 +1,230 @@
+---
+title: 'Hosting a dockerized Rust Axum app on AWS Lambda'
+description: 'Short notes/guide on how to deploy a dockerized Rust app to AWS Lambda'
+author: 'dhzdhd'
+date: '08-02-2025'
+published: false
+tags:
+  - programming
+  - rust
+  - aws
+  - docker
+  - serverless
+---
+
+
+<script>
+  import Image from "$lib/components/blog/Image.svelte";
+  import Note from "$lib/components/blog/Note.svelte"
+</script>
+
+# Table of Contents
+
+# About
+
+This note/guide explains how to deploy a containerized Rust Axum web server application on AWS Lambda through a Github Actions workflow.
+
+Production app hosted on my [GitHub account](https://github.com/dhzdhd/invtrack).
+
+# Why
+
+- AWS Lambda
+    - [Kinda free for small projects](https://aws.amazon.com/free/?all-free-tier.sort-by=item.additionalFields.SortRank&all-free-tier.sort-order=asc&awsf.Free%20Tier%20Types=*all&awsf.Free%20Tier%20Categories=*all)
+    - Serverless functions have their own problems of course, with the slow initial responses, etc but the cost is enticing.
+- Axum
+    - The provided handlers by AWS are pretty basic and also are a sort of vendor lock-in. Integrating Axum with Lambda implies I can make way more complex apps easily.
+    - AWS handlers are most likely less used and hence have lesser support than Axum.
+- Docker
+    - I can zip the application and then push it directly to AWS Lambda, skipping the AWS ECR step which we will explore in the [alternatives section](#Alternatives)
+    - I personally like docker builds as i can reproduce the Lambda environment on my local machine, hence ensuring that the function works perfectly
+    - Docker builds make changing ports and env variables easy
+
+# Guide
+
+## Rust application
+
+Create a standard Axum application which is wrapped in a `lambda_http` managed `run` function as shown in this [example](https://github.com/awslabs/aws-lambda-rust-runtime/tree/main/examples/http-axum).
+This can be modified to run `axum::serve` in debug mode and use the lambda wrapper only in release mode
+
+```rust:main.rs
+#[tokio::main]
+async fn main() -> Result<(), Error> {
+    ...
+    
+    if cfg!(debug_assertions) {
+        let listener = tokio::net::TcpListener::bind("0.0.0.0:8080").await.unwrap();
+        axum::serve(listener, app).await?;
+    } else {
+        lambda_http::run(app).await?;
+    }
+
+    Ok(())
+}
+```
+
+That's the only configuration needed for the application.
+
+## Dockerfile
+
+The dockerfile contains two stages
+- Builder stage - Builds the rust app in release mode using the rust base image.
+- Lambda env stage - Copies the built binary to `/var/runtime` and is named `bootstrap` as Lambda expects a script/binary with the name `bootstrap`.
+    It then runs the `/lambda-entrypoint.sh` script provided in the `al2023` Lambda image
+
+```dockerfile:Dockerfile
+# Stage 1: Build the Rust binary
+FROM rust:1.84-slim AS builder
+
+RUN apt-get update && \
+    apt-get install -y \
+    pkg-config \
+    libssl-dev \
+    libpq-dev \
+    && rm -rf /var/lib/apt/lists/*
+WORKDIR /app
+COPY . .
+
+RUN rustup target add x86_64-unknown-linux-gnu
+RUN cargo build --release --target x86_64-unknown-linux-gnu
+
+# Stage 2: Create AWS Lambda environment and setup Rust binary and environment
+# https://docs.aws.amazon.com/lambda/latest/dg/images-create.html#runtimes-images-provided
+FROM public.ecr.aws/lambda/provided:al2023
+
+RUN dnf update -y && \
+    dnf install -y \
+    gcc \
+    gcc-c++ \
+    make \
+    wget \
+    tar \
+    openssl-devel \
+    postgresql-devel
+
+COPY --from=builder /app/target/x86_64-unknown-linux-gnu/release/api /var/runtime/bootstrap
+
+ENV LANG=en_US.UTF-8
+ENV TZ=:/etc/localtime
+ENV PATH=/var/lang/bin:/usr/local/bin:/usr/bin/:/bin:/opt/bin
+ENV LD_LIBRARY_PATH=/var/lang/lib:/lib64:/usr/lib64:/var/runtime:/var/runtime/lib:/var/task:/var/task/lib:/opt/lib
+ENV LAMBDA_TASK_ROOT=/var/task
+ENV LAMBDA_RUNTIME_DIR=/var/runtime
+ENV RUNTIME_ENTRYPOINT=/var/runtime/bootstrap
+
+EXPOSE 8080
+
+WORKDIR /var/task
+
+ENTRYPOINT ["/lambda-entrypoint.sh"]
+CMD [ "/var/runtime/bootstrap" ]
+```
+
+The bundled `lambda-entrypoint.sh` contains the following script
+
+```shell:lambda-entrypoint.sh
+#!/bin/sh
+# Copyright 2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+
+if [ $# -ne 1 ]; then
+  echo "entrypoint requires the handler name to be the first argument" 1>&2
+  exit 142
+fi
+export _HANDLER="$1"
+
+RUNTIME_ENTRYPOINT=/var/runtime/bootstrap
+if [ -z "${AWS_LAMBDA_RUNTIME_API}" ]; then
+  exec /usr/local/bin/aws-lambda-rie $RUNTIME_ENTRYPOINT
+else
+  exec $RUNTIME_ENTRYPOINT
+fi
+```
+
+My assumption is that the `_HANDLER` does not really do anything for compiled applications like rust, rather is for python/JS applications.
+Hence, I pass a random argument to the script so that it does not error out.
+The `ENTRYPOINT` of the Dockerfile can most likely be changed to just `/var/runtime/bootstrap` without causing any errors but that requires some testing.
+
+<br>
+
+You can locally host the server while emulating the Lambda environment using Docker
+
+`docker build -t <app_name> . && docker run -p 8080:8080 <app_name>`
+
+Testing this locally requires custom path segments
+
+`http://localhost:8080/2015-03-31/functions/function/invocations`
+
+and a custom JSON payload to be passed to the endpoint everytime so as to emulate the Lambda environment.
+
+```json:JSON@payload@on@query
+{
+    "version": "2.0",
+    "routeKey": "$default",
+    "rawPath": "/",
+    "rawQueryString": "",
+    "headers": {},
+    "requestContext": {
+        "http": {
+            "method": "GET",
+            "path": "/"
+        }
+    },
+    "isBase64Encoded": false,
+    "body": null
+}
+``` 
+
+## GitHub Actions workflow
+
+The workflow contains the following steps
+- Checkout the repository to the GitHub Actions runner machine
+- Build the Docker image in the runner using the Dockerfile
+- Push the built image to Amazon ECR
+- Update the AWS Lambda function so that it uses the latest pushed image (The Lambda function does not automatically update when a new ECR image is created)
+
+The following secrets need to be added to the repository settings
+- AWS_ACCESS_KEY_ID
+- AWS_SECRET_ACCESS_KEY
+
+```yaml:GitHub@Actions@workflow
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "master" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./api
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag <app_name>:latest
+
+    - name: Push to ECR
+      id: ecr
+      uses: jwalton/gh-ecr-push@v2
+      with:
+        access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        region: ap-south-1
+        image: <app_name>:latest
+        local-image: <app_name>:latest
+
+    - name: Update lambda
+      uses: appleboy/lambda-action@v0.2.0
+      with:
+        aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws_region: ap-south-1
+        function_name: <app_name>
+        image_uri: XXXXXXXX.dkr.ecr.<location>.amazonaws.com/<app_name>:latest
+```
+
+
+# Alternatives
+
+TODO

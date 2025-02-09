@@ -38,10 +38,11 @@
     "@giscus/svelte": "^3.1.0",
     "@rehype-pretty/transformers": "^0.13.2",
     "rehype-autolink-headings": "^7.1.0",
-    "rehype-pretty-code": "^0.13.2",
     "rehype-slug": "^6.0.0",
+    "remark-flexible-code-titles": "^1.2.0",
     "remark-toc": "^9.0.0",
     "sass": "^1.77.8",
+    "shiki": "^2.3.2",
     "svelte-icons-pack": "^3.1.3"
   }
 }
