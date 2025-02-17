@@ -7,24 +7,20 @@ import { log } from 'console';
 export const prerender = true;
 
 export async function GET() {
-    const fileNames = await fs.promises.readdir('src/posts');
-
-    log(fileNames);
+    const files = import.meta.glob('../../../posts/*.svx', { query: '?raw', eager: true });
 
     const posts = (
         await Promise.all(
-            fileNames.map(async (fileName: string) => {
-                const doc = await fs.promises.readFile(`src/posts/${fileName}`, 'utf8');
+            Object.entries(files).map(async ([fileName, post]: any) => {
+                const doc = post.default;
 
-                const { data } = matter(doc);
+                const { data } = matter(doc as string);
 
                 data.slug = path.basename(fileName, '.svx');
                 return data as XMLPayload;
             })
         )
     )
-
-    log(posts);
 
     const headers = {
         'Cache-Control': 'max-age=0, s-maxage=3600',
