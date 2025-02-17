@@ -1,3 +1,5 @@
+import moment from "moment";
+
 const website = 'https://www.dhzdhd.dev';
 const feedTitle = 'dhzdhd blog';
 const feedDescription = 'Blogs and guides from dhzdhd.';
@@ -13,6 +15,10 @@ export interface XMLPayload {
     published: boolean;
     tags: string[];
     content: string;
+}
+
+const parseDate = (date: string): string => {
+    return moment(date, 'YYYY-MM-DD').toISOString();
 }
 
 export const xml = (posts: XMLPayload[]) => `<?xml version="1.0" encoding="utf-8"?>
@@ -31,8 +37,8 @@ ${posts.map((post: XMLPayload) => `    <entry>
         <title>${post.title}</title>
         <link href="${website}/blog/${post.slug}/"/>
         <id>${website}/blog/${post.slug}/</id>
-        <updated>${post.date}</updated>
-        <published>${post.date}</published>
+        <updated>${parseDate(post.date)}</updated>
+        <published>${parseDate(post.date)}</published>
         <content type="html"><![CDATA[${post.content}]]></content>
       </entry>`
 ).join('\n')}
