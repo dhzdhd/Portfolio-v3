@@ -16,7 +16,9 @@ export async function GET() {
                 const { data, content } = matter(doc as string);
 
                 data.slug = path.basename(fileName, '.svx');
-                data.content = mdToHtml(content)
+                const vFile = await mdToHtml(content)
+                data.content = vFile.toString()
+
                 return data as XMLPayload;
             })
         )
