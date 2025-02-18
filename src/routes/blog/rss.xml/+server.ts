@@ -1,8 +1,6 @@
-import fs from 'fs'
 import { xml, type XMLPayload } from '$lib/rss';
 import path from 'path';
 import matter from 'gray-matter';
-import { log } from 'console';
 
 export const prerender = true;
 
@@ -18,12 +16,10 @@ export async function GET() {
 
                 data.slug = path.basename(fileName, '.svx');
                 data.content = content
-                return data;
+                return data as XMLPayload;
             })
         )
     )
-
-    return new Response(JSON.stringify(posts), { headers: { 'Content-Type': 'application/json' } });
 
     const headers = {
         'Cache-Control': 'max-age=0, s-maxage=3600',
