@@ -19,7 +19,7 @@ export interface XMLPayload {
 }
 
 const parseDate = (date: string): string => {
-    return moment(date, 'YYYY-MM-DD').toISOString();
+    return moment(date, 'DD-MM-YYYY').toISOString();
 }
 
 export const xml = (posts: XMLPayload[]) => `<?xml version="1.0" encoding="utf-8"?>
