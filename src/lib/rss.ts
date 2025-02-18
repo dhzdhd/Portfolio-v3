@@ -1,4 +1,5 @@
 import moment from "moment";
+import { create } from "xmlbuilder2";
 
 const website = 'https://www.dhzdhd.dev';
 const feedTitle = 'dhzdhd blog';
@@ -43,3 +44,23 @@ ${posts.map((post: XMLPayload) => `    <entry>
       </entry>`
 ).join('\n')}
   </feed>`;
+
+const BLOG_URL = "https://www.dhzdhd.dev/blog";
+
+async function getRssXml(): Promise<string> {
+    const rssUrl = `${BLOG_URL}/rss.xml`;
+    const root = create({ version: '1.0', encoding: 'utf-8' })
+        .ele('feed', {
+            xmlns: 'http://www.w3.org/2005/Atom',
+        })
+        .ele('title').txt("dhzdhd Blog").up()
+        .ele('link', { href: BLOG_URL }).up()
+        .ele('link', { rel: 'self', href: rssUrl }).up()
+        .ele('updated').txt(new Date().toISOString()).up()
+        .ele('id').txt(BLOG_URL).up()
+        .ele('author')
+        .ele('name').txt('dhzdhd').up()
+        .up()
+
+    return root.end();
+}

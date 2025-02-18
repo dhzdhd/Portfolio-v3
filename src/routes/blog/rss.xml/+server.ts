@@ -7,7 +7,7 @@ import { log } from 'console';
 export const prerender = true;
 
 export async function GET() {
-    const files = import.meta.glob('../../../posts/*.svx', { query: '?raw', eager: true });
+    const files = import.meta.glob('./posts/*.svx', { query: '?raw', eager: true });
 
     const posts = (
         await Promise.all(
