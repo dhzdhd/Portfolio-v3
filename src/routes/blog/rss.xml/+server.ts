@@ -9,8 +9,6 @@ export const prerender = true;
 export async function GET() {
     const files = import.meta.glob('../../../posts/*.svx', { query: '?raw', eager: true });
 
-    return new Response(JSON.stringify(files), { headers: { 'Content-Type': 'application/json' } });
-
     const posts = (
         await Promise.all(
             Object.entries(files).map(async ([fileName, post]: any) => {
@@ -23,6 +21,8 @@ export async function GET() {
             })
         )
     )
+
+    return new Response(JSON.stringify(posts), { headers: { 'Content-Type': 'application/json' } });
 
     const headers = {
         'Cache-Control': 'max-age=0, s-maxage=3600',
