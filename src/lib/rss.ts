@@ -15,7 +15,7 @@ export interface XMLPayload {
     author: string;
     published: boolean;
     tags: string[];
-    content: string;
+    content: any;
 }
 
 const parseDate = (date: string): string => {

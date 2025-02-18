@@ -17,7 +17,8 @@ export async function GET() {
                 const { data } = matter(doc as string);
 
                 data.slug = path.basename(fileName, '.svx');
-                return data as XMLPayload;
+                log(data)
+                return data as any;
             })
         )
     )
