@@ -14,11 +14,11 @@ export async function GET() {
             Object.entries(files).map(async ([fileName, post]: any) => {
                 const doc = post.default;
 
-                const { data } = matter(doc as string);
+                const { data, content } = matter(doc as string);
 
                 data.slug = path.basename(fileName, '.svx');
-                // log(data)
-                return data.content;
+                data.content = content
+                return data;
             })
         )
     )
