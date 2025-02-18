@@ -1,6 +1,7 @@
 import { xml, type XMLPayload } from '$lib/rss';
 import path from 'path';
 import matter from 'gray-matter';
+import { mdToHtml } from '$lib/mdToHtml';
 
 export const prerender = true;
 
@@ -15,7 +16,7 @@ export async function GET() {
                 const { data, content } = matter(doc as string);
 
                 data.slug = path.basename(fileName, '.svx');
-                data.content = content
+                data.content = mdToHtml(content)
                 return data as XMLPayload;
             })
         )
