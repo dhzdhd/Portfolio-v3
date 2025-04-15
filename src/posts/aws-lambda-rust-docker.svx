@@ -3,7 +3,7 @@ title: 'Hosting a dockerized Rust Axum app on AWS Lambda'
 description: 'Short notes/guide on how to deploy a dockerized Rust app to AWS Lambda'
 author: 'dhzdhd'
 date: '08-02-2025'
-published: false
+published: true
 tags:
   - programming
   - rust

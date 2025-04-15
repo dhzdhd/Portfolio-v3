@@ -100,9 +100,12 @@
         font-size: 2rem
 
     :global(.prose h2)
-        font-size: 1.6rem
+        font-size: 1.7rem
 
     :global(.prose h3)
+        font-size: 1.45rem
+    
+    :global(.prose h4)
         font-size: 1.2rem
 
     :global(.prose p)
@@ -117,10 +120,15 @@
             color: vars.$color-primary-light
 
     :global(.prose :not(pre) :is(code))
-        font-size: 1.2rem
-        padding: 0.1rem 0.3rem
+        font-size: 1.1rem
+        padding: 0.05rem 0.3rem
         border-radius: 5px
         background-color: transparentize(vars.$color-primary-light, 0.9)
+
+    :global(.prose blockquote)
+        font-style: italic
+        border-radius: 0.5rem
+        padding: 0.5rem
 
     :global(.prose hr)
         margin: 1rem 0rem
