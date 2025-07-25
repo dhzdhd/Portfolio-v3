@@ -1,0 +1,50 @@
+---
+title: 'Converting a IPv4 server to IPv6'
+description: 'Why I did it, what are the benefits, and of course, the challenges'
+author: 'dhzdhd'
+date: '09-06-2025'
+published: false
+tags:
+  - programming
+  - networks
+  - devops
+---
+
+
+<script>
+  import Image from "$lib/components/blog/Image.svelte";
+</script>
+
+<Image src="\images\ipv6.png" alt="IPv6" position="between" />
+
+# Table of Contents
+
+# About
+
+IP or Internet Protocol address is an address assigned to a device connected to a computer network which helps 
+in addressing the location of said device and network identification.
+IPv4 was the first standalone spec and are defined by a 32 bit number. This naturally led to the exhaustion of 
+available IPv4 addresses and brought about the need for a newer protocol, IPv6, which is instead defined by a 
+128 bit number. 
+
+For example, an IPv4 address looks like `192.168.0.1` and IPv6 like `2001:0db8:85a3:0000:0000:8a2e:0370:7334` 
+which seems a lot more complex until you realise that there usually is a shorter version for common addresses
+like `fe80::1`
+
+# Why IPv6?
+
+I mentioned the exhaustion of IPv4 addresses above, which is a decent reason to switch to IPv6. Along with the 
+relatively good support for IPv6 nowadays.
+
+But the reason I switched? ***Money***
+
+I use AWS for hosting my personal server for password management, file storage, etc. Here is a bill i received
+in the month of April.
+
+<Image src="\images\ipv6-bill.png" alt="AWS bill" position="between"/>
+
+The VPC cost was higher than the actual EC2 instance cost. The EC2 instance I had deployed was a t2.micro instance
+which costs as shown in the image. But surely a VPC cannot cost more than the instance itself?
+
+I then checked AWS documentation to find out more and indeed I was right. The VPC costs no money. Reddit 
+supports 

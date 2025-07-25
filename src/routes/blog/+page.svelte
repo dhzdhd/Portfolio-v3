@@ -3,7 +3,7 @@
   import type { BlogPostWithSlug } from './+page.server.js';
 
   let { data } = $props();
-  
+
   const comparator = (date1: string, date2: string): number => {
     const [day1, month1, year1] = date1.split('-').map(Number);
     const [day2, month2, year2] = date2.split('-').map(Number);
@@ -14,11 +14,11 @@
     if (d1 < d2) return 1;
     if (d1 > d2) return -1;
     return 0;
-  }
+  };
 
   const sortPosts = (posts: BlogPostWithSlug[]): BlogPostWithSlug[] => {
-    return posts.toSorted((x, y) =>  comparator(x.date, y.date))
-  }
+    return posts.filter((x) => x.published).toSorted((x, y) => comparator(x.date, y.date));
+  };
 
   let posts = $state(sortPosts(data.posts));
   let search = $state('');
