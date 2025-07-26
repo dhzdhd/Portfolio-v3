@@ -44,7 +44,12 @@
         height: 14rem
         padding: 0rem 2rem
         border-radius: 2rem
-        background: linear-gradient(180deg, transparentize(white, 0.96) 0%, transparentize(vars.$color-tertiary, 0.9)  100%)
+        background: rgba(255, 255, 255, 0.009)
+        backdrop-filter: blur(3px)
+        -webkit-backdrop-filter: blur(3px)
+        border: 1px solid rgba(255, 255, 255, 0.2)
+        border-radius: 2rem
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3)        
         color: vars.$color-primary-dark
         transition-duration: 300ms
         text-decoration: none
@@ -75,9 +80,6 @@
                 align-items: center
                 gap: 0.5rem
 
-            .left
-                justify-self: start
-
             .center
                 justify-self: center
 
@@ -85,10 +87,13 @@
                 justify-self: right
 
         &:hover
-            background: linear-gradient(320deg, vars.$color-accent 0%, vars.$color-tertiary 100%)
+            background: transparentize(vars.$color-tertiary, 0.3)
             transform: scale(1.02)
-            color: vars.$color-primary-light
+            color: vars.$color-primary-dark
 
         @media (prefers-color-scheme: dark)
             color: vars.$color-primary-light
+
+            &:hover
+                background: transparentize(vars.$color-accent, 0.3)
 </style>

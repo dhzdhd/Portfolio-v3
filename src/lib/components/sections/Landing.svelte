@@ -34,7 +34,7 @@
                 font-size: 3rem
 
                 span
-                    color: vars.$color-accent
+                    color: vars.$color-tertiary
 
             @media (prefers-color-scheme: dark)
                 h1
@@ -42,4 +42,7 @@
 
                 h2
                     color: vars.$color-primary-light
+
+                    span
+                        color: vars.$color-accent
 </style>

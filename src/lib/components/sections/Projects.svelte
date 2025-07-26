@@ -27,7 +27,7 @@
     onclick={() => (isVisible = !isVisible)}
     style="transform: rotate({isVisible ? '180deg' : '0'})"
   >
-    <Icon src={Down} size="50px" />
+    <Icon src={Down} size="36px" />
   </button>
   <!-- FIXME Broken css due to content, not card -->
   {#if isVisible}
@@ -74,9 +74,13 @@
             cursor: pointer
 
             &:hover
-                background: linear-gradient(320deg, vars.$color-accent 0%, vars.$color-tertiary 100%)
+                background: vars.$color-tertiary
                 color: vars.$color-primary-light
 
             @media (prefers-color-scheme: dark)
                 color: vars.$color-primary-light
+
+                &:hover
+                    color: vars.$color-primary-dark
+                    background: vars.$color-accent
 </style>

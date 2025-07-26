@@ -25,14 +25,17 @@
         flex-direction: column
         padding-top: 5rem
         gap: 2rem
+        font-size: 1,2rem
 
         div
             display: flex
             flex-direction: column
             gap: 0.5rem
+            font-size: 1,2rem
 
             p
                 color: vars.$color-primary-dark
+                font-size: vars.$font-para
 
             @media (prefers-color-scheme: dark)
                 p

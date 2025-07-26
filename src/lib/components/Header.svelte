@@ -19,8 +19,6 @@
         padding: 0rem 5rem
         height: 4rem
         width: 100vw
-
-        @media (prefers-color-scheme: dark)
-            padding: 0rem 0rem
-            justify-content: center
+        justify-content: center
+        padding: 0rem 0rem
 </style>

@@ -46,7 +46,7 @@
         background-image: url("/topography.svg")
         background-repeat: repeat
         background-size: auto
-        animation: moveBackground 2000s linear infinite
+        animation: slide 2000s linear infinite
         display: flex
         flex-direction: column
         justify-content: center
@@ -61,7 +61,7 @@
         @media (min-width: vars.$lg)
             padding: 2rem 10rem
 
-    @keyframes moveBackground
+    @keyframes slide
         0%
             background-position: 0 0
         100%
