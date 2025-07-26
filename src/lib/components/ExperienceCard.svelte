@@ -29,13 +29,8 @@
         width: 100%
         padding: 2rem 2rem
         gap: 1.8rem
-        background: rgba(255, 255, 255, 0.009)
-        backdrop-filter: blur(3px)
-        -webkit-backdrop-filter: blur(3px)
-        border: 1px solid rgba(255, 255, 255, 0.2)
-        border-radius: 2rem
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3)
         color: vars.$color-primary-dark
+        @include utils.blur-card
 
         h3
             font-size: vars.$font-h3

@@ -43,16 +43,11 @@
         max-width: 100%
         height: 14rem
         padding: 0rem 2rem
-        border-radius: 2rem
-        background: rgba(255, 255, 255, 0.009)
-        backdrop-filter: blur(3px)
-        -webkit-backdrop-filter: blur(3px)
-        border: 1px solid rgba(255, 255, 255, 0.2)
-        border-radius: 2rem
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3)        
+        border-radius: 2rem      
         color: vars.$color-primary-dark
         transition-duration: 300ms
         text-decoration: none
+        @include utils.blur-card(true)
 
         .top
             display: flex
@@ -86,14 +81,6 @@
             .right
                 justify-self: right
 
-        &:hover
-            background: transparentize(vars.$color-tertiary, 0.3)
-            transform: scale(1.02)
-            color: vars.$color-primary-dark
-
         @media (prefers-color-scheme: dark)
             color: vars.$color-primary-light
-
-            &:hover
-                background: transparentize(vars.$color-accent, 0.3)
 </style>

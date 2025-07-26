@@ -41,9 +41,11 @@
     id="search"
     placeholder="Search"
   />
-  <div>
+  <div class="container">
     {#if posts.length === 0}
-      <h2>No posts found!</h2>
+      <div>
+        <h2>No posts found!</h2>
+      </div>
     {:else}
       {#each posts as item}
         <BlogCard data={item} />
@@ -54,25 +56,32 @@
 
 <style lang="sass">
     @use '../../styles/vars'
+    @use '../../styles/utils'
 
     section
         height: 100vh
         padding: 4rem 2rem
 
-        div
+        .container
           display: flex
+          height: 100%
           flex-direction: column
           gap: 1rem
+          padding: 0rem 0rem 2rem 0rem
+          
+          div
+              height: 100%
+              display: flex
+              align-items: center
+              justify-content: center
+              padding: 0rem 0rem 3rem 0rem
 
-          h2
-              font-size: 3rem
-              text-align: center
-              background: linear-gradient(135deg, vars.$color-accent 0%, vars.$color-tertiary 100%)
-              -webkit-background-clip: text
-              -webkit-text-fill-color: transparent
+              h2
+                  font-size: 3rem
+                  color: vars.$color-accent
 
         input
-            height: 3rem
+            height: 3.6rem
             width: 100%
             margin-bottom: 2rem
             background: linear-gradient(180deg,transparentize(white, 0.96) 0%,transparentize(vars.$color-tertiary, 0.9)  100%)
@@ -80,10 +89,11 @@
             border-color: transparent
             outline: none
             border-radius: 2rem
-            font-size: 1.5rem
+            font-size: vars.$font-h3
             padding: 0rem 1rem
             color: vars.$color-primary-light
+            @include utils.blur-card
 
             &:focus
-              border-color: vars.$color-tertiary
+              border-color: vars.$color-accent
 </style>

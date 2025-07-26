@@ -30,7 +30,8 @@
 
 <style lang="sass">
     @use "../../../styles/vars"
-
+    @use "../../../styles/utils"
+  
     .card
         position: relative
         display: flex
@@ -40,30 +41,16 @@
         border-radius: 2rem
         min-height: 10rem
         padding: 2rem
-        background: linear-gradient(180deg,transparentize(white, 0.96) 0%,transparentize(vars.$color-tertiary, 0.9)  100%)
-        color: vars.$color-primary-light
+        color: vars.$color-primary-dark
         text-decoration: none
-
-        &:hover
-            background: vars.$color-primary-dark
-            cursor: pointer
-
-        &:hover::before
-            content: ""
-            position: absolute
-            inset: 0rem
-            filter: blur(1rem)
-            transform: translate3d(0px,0px,-1px)
-            border-radius: inherit
-            pointer-events: none
-            background: linear-gradient(230deg, vars.$color-accent 0%, vars.$color-tertiary 100%)
+        @include utils.blur-card(true)
 
         .title
             h2
                 font-size: 2rem
 
         .subtitle
-            color: transparentize(vars.$color-primary-light, 0.3)
+            color: transparentize(vars.$color-primary-dark, 0.3)
             display: flex
             justify-content: space-between
             align-items: center
@@ -82,5 +69,19 @@
                     border-radius: 1rem
 
         p
-            color: transparentize(vars.$color-primary-light, 0.3)
+            color: transparentize(vars.$color-primary-dark, 0.3)
+
+        @media (prefers-color-scheme: dark)
+            color: vars.$color-primary-light
+
+            .subtitle
+                color: transparentize(vars.$color-primary-light, 0.3)
+
+                .tags
+                    .tag
+                        background-color: vars.$color-accent
+                        color: vars.$color-primary-dark
+            
+            p
+                color: transparentize(vars.$color-primary-light, 0.3)
 </style>
