@@ -1,5 +1,5 @@
 <script>
-  import { page } from '$app/stores';
+  import { page } from '$app/state';
   import GradientHeading from '$lib/components/GradientHeading.svelte';
   import About from '$lib/components/sections/About.svelte';
   import Contact from '$lib/components/sections/Contact.svelte';
@@ -7,17 +7,24 @@
   import Landing from '$lib/components/sections/Landing.svelte';
 </script>
 
-<Landing />
-<About />
-<Experience />
-<section id="projects">
-  <GradientHeading text={'Projects'} alignment={'left'} />
+{#if page.status === 404}
   <div>
-    <h1>{$page.status}</h1>
-    <h2>{$page.error?.message ?? 'Unknown error occurred'}</h2>
+    <h1>{page.status}</h1>
+    <h2>{page.error?.message ?? 'Not Found'}</h2>
   </div>
-</section>
-<Contact />
+{:else}
+  <Landing />
+  <About />
+  <Experience />
+  <section id="projects">
+    <GradientHeading text={'Projects'} alignment={'left'} />
+    <div>
+      <h1>{page.status}</h1>
+      <h2>Failed to load projects</h2>
+    </div>
+  </section>
+  <Contact />
+{/if}
 
 <style lang="sass">
     @use '../styles/vars'
@@ -31,9 +38,10 @@
 
         h1
             font-size: 5rem
-            background: linear-gradient(135deg, vars.$color-accent 0%, vars.$color-tertiary 100%)
-            -webkit-background-clip: text
-            -webkit-text-fill-color: transparent
+            color: vars.$color-tertiary  
+
+            @media (prefers-color-scheme: dark)
+                color: vars.$color-accent
 
         h2
             font-size: 2rem
