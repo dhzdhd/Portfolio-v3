@@ -59,7 +59,7 @@
     @use '../../styles/utils'
 
     section
-        height: 100vh
+        height: 100%
         padding: 4rem 2rem
 
         .container
