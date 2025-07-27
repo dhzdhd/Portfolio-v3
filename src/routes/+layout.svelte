@@ -5,6 +5,9 @@
   import '../styles/global.sass';
   import '../styles/vars.sass';
   import { enabled } from '../utils';
+  import { fade } from 'svelte/transition';
+  import { page } from '$app/state';
+  import { onNavigate } from '$app/navigation';
 
   interface Props {
     children?: import('svelte').Snippet;
@@ -14,12 +17,25 @@
 
   onMount(() => ($isReady = true));
 
+  onNavigate((navigation) => {
+    if (!document.startViewTransition) return;
+
+    return new Promise((resolve) => {
+      document.startViewTransition(async () => {
+        resolve();
+        await navigation.complete;
+      });
+    });
+  });
+
   let mainElement: any;
 
   const handleScroll = () => {
     const scrollY = window.scrollY;
     mainElement.style.backgroundPosition = `${-scrollY * 0.05}px ${-scrollY * 0.05}px`;
   };
+
+  let isBlogRoute = $derived(page.route.id?.startsWith('/blog/'));
 </script>
 
 <svelte:window onscroll={handleScroll} />
@@ -31,7 +47,7 @@
 <svelte:body onclick={() => ($enabled = false)} />
 
 <Header />
-<main bind:this={mainElement}>
+<main transition:fade bind:this={mainElement} class:blog-posts={isBlogRoute}>
   {@render children?.()}
 </main>
 
@@ -51,6 +67,11 @@
         flex-direction: column
         justify-content: center
         gap: 5rem
+        view-transition-name: main
+
+        &.blog-posts
+            background-image: none
+            animation: none
 
         @media (prefers-color-scheme: dark)
             background-color: vars.$color-primary-dark
