@@ -14,7 +14,7 @@ export interface ExperienceInfo {
   type: ExperienceType;
 }
 
-export const projArr = ['ExCode', 'SyncVault', 'Obsidian', 'database', 'blog', 'Portfolio-v3'];
+export const projArr = ['excode', 'syncvault', 'jade', 'invtrack', 'pysvt', 'dotfiles'];
 
 export const expArr: ExperienceInfo[] = [
   {

@@ -33,6 +33,7 @@
 
             p
                 color: vars.$color-primary-dark
+                font-size: vars.$font-para
 
             @media (prefers-color-scheme: dark)
                 p

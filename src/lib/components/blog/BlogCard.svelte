@@ -16,71 +16,72 @@
 >
   <div class="subtitle">
     <h3>{data.date}</h3>
-    <div class="tags">
-      {#each data.tags as tag}
-        <div class="tag">{tag}</div>
-      {/each}
-    </div>
   </div>
   <div class="title">
     <h2>{data.title}</h2>
   </div>
   <p>{data.description}</p>
+  <div class="tags">
+    {#each data.tags as tag}
+      <div class="tag">{tag}</div>
+    {/each}
+  </div>
 </a>
 
 <style lang="sass">
     @use "../../../styles/vars"
-
+    @use "../../../styles/utils"
+  
     .card
-        position: relative
         display: flex
         flex-direction: column
         gap: 0.4rem
-        transform-style: preserve-3d
         border-radius: 2rem
-        min-height: 10rem
         padding: 2rem
-        background: linear-gradient(180deg,transparentize(white, 0.96) 0%,transparentize(vars.$color-tertiary, 0.9)  100%)
-        color: vars.$color-primary-light
         text-decoration: none
-
-        &:hover
-            background: vars.$color-primary-dark
-            cursor: pointer
-
-        &:hover::before
-            content: ""
-            position: absolute
-            inset: 0rem
-            filter: blur(1rem)
-            transform: translate3d(0px,0px,-1px)
-            border-radius: inherit
-            pointer-events: none
-            background: linear-gradient(230deg, vars.$color-accent 0%, vars.$color-tertiary 100%)
+        @include utils.blur-card(true)
 
         .title
             h2
                 font-size: 2rem
+                color: vars.$color-primary-dark
 
         .subtitle
-            color: transparentize(vars.$color-primary-light, 0.3)
+            color: transparentize(vars.$color-primary-dark, 0.3)
             display: flex
             justify-content: space-between
             align-items: center
 
-            h3
-                display: inline-flex
+        .tags
+            display: flex
+            flex-wrap: wrap
+            padding: 1rem 0rem 0rem 0rem
+            gap: 1rem
+
+            .tag
+                background-color: vars.$color-tertiary
+                color: vars.$color-primary-light
+                padding: 0.3rem 0.7rem
+                border-radius: 1rem
+
+        p
+            color: transparentize(vars.$color-primary-dark, 0.3)
+
+        @media (prefers-color-scheme: dark)
+            color: vars.$color-primary-light
+
+            .title
+                h2
+                    color: vars.$color-primary-light
+
+            .subtitle
+                color: transparentize(vars.$color-primary-light, 0.3)
 
             .tags
-                display: inline-flex
-                gap: 1rem
-
                 .tag
                     background-color: vars.$color-accent
                     color: vars.$color-primary-dark
-                    padding: 0.3rem 0.7rem
-                    border-radius: 1rem
-
-        p
-            color: transparentize(vars.$color-primary-light, 0.3)
+            
+            p
+                color: transparentize(vars.$color-primary-light, 0.3)
 </style>

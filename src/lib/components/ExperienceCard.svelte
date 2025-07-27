@@ -28,23 +28,21 @@
         flex-direction: column
         width: 100%
         padding: 2rem 2rem
-        gap: 2rem
-        border-radius: 2rem
-        background: linear-gradient(180deg,transparentize(white, 0.96) 0%,transparentize(vars.$color-tertiary, 0.9)  100%)
+        gap: 1.8rem
         color: vars.$color-primary-dark
+        @include utils.blur-card
 
         h3
-            font-size: 1.2rem
+            font-size: vars.$font-h3
 
         .content
             width: 100%
             display: flex
             flex-direction: row
             justify-content: space-between
-            gap: 2rem
 
             span
-                font-size: 1rem
+                font-size: vars.$font-para
                 text-transform: capitalize
 
             img

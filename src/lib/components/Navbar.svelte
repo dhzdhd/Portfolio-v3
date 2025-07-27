@@ -5,67 +5,85 @@
   import { AiOutlineMenu as Menu } from 'svelte-icons-pack/ai';
   import { fly } from 'svelte/transition';
   import { enabled } from '../../utils';
+
+  let scrollY = $state(0);
+  let isAtTop = $derived(scrollY < 5);
+
+  const handleScroll = () => {
+    scrollY = window.scrollY;
+  };
+
+  const links: { text: string; link: string }[] = [
+    { text: 'About', link: '/#about' },
+    { text: 'Experience', link: '/#experience' },
+    { text: 'Projects', link: '/#projects' },
+    { text: 'Contact', link: '/#contact' },
+    { text: 'Blog', link: '/blog' }
+  ];
 </script>
 
-<nav>
+<svelte:window onscroll={handleScroll} />
+
+<nav class:blur-header={!isAtTop}>
   <button
-    class="button"
+    class="menu"
     onclick={stopPropagation(() => ($enabled = !$enabled))}
     style="transform: rotate({$enabled ? '90deg' : '0'})"
   >
-    <Icon src={Menu} size={'2rem'} color={'white'} />
+    <Icon src={Menu} size={'1.8rem'} color={'white'} />
   </button>
   {#if $enabled}
     <ul transition:fly={{ x: -200 }} class="mobile">
-      <li>
-        <a href="/#about">About</a>
-      </li>
-      <li>
-        <a href="/#experience">Experience</a>
-      </li>
-      <li>
-        <a href="/#projects">Projects</a>
-      </li>
-      <li>
-        <a href="/#contact">Contact</a>
-      </li>
-      <li>
-        <a href="/blog">Blog</a>
-      </li>
+      {#each links as item}
+        <li>
+          <a href={item.link}>{item.text}</a>
+        </li>
+      {/each}
     </ul>
   {/if}
   <ul class="desktop">
-    <li>
-      <a href="/#about">About</a>
-    </li>
-    <li>
-      <a href="/#experience">Experience</a>
-    </li>
-    <li>
-      <a href="/#projects">Projects</a>
-    </li>
-    <li>
-      <a href="/#contact">Contact</a>
-    </li>
-    <li>
-      <a href="/blog">Blog</a>
-    </li>
+    {#each links as item}
+      <li>
+        <a href={item.link}>{item.text}</a>
+      </li>
+    {/each}
   </ul>
 </nav>
 
 <style lang="sass">
     @use '../../styles/vars'
+    @use '../../styles/utils'
 
     nav
-        .button
-            display: flex
+        padding: 0rem 2rem
+        margin-top: 1rem
+        border-radius: 2rem
+        position: relative
+
+        &.blur-header::before
+            display: none
+            content: ""
             position: absolute
+            top: 0
+            left: 0
+            right: 0
+            bottom: 0
+            backdrop-filter: blur(100px)
+            border-radius: 2rem
+            z-index: -1
+
+        .menu
+            display: flex
+            position: fixed
             top: 1rem
             left: 1rem
             z-index: 100
             border: none
             background-color: transparent
             transition-duration: 300ms
+            backdrop-filter: blur(100px)
+            border-radius: 0.5rem
+            padding: 0.4rem
 
         .mobile
             position: fixed
@@ -73,13 +91,10 @@
             flex-direction: column
             border-radius: 2rem
             left: 1rem
-            padding: 2rem
+            padding: 1rem
             gap: 1rem
             top: 5rem
-            border: solid 0.1rem vars.$color-primary-light
-            background-clip: padding-box
-            background: linear-gradient(180deg, transparentize(white, 0.96) 0%, transparentize(vars.$color-tertiary, 0.9)  100%)
-            backdrop-filter: blur(10px)
+            @include utils.blur-card(false, 100px, 1rem)
 
         .desktop
             display: none
@@ -110,7 +125,10 @@
                             color: vars.$color-accent
 
         @media (min-width: vars.$md)
-            .button
+            &.blur-header::before
+                display: flex
+
+            .menu
                 display: none
 
             .mobile
@@ -118,6 +136,4 @@
 
             .desktop
                 display: flex
-                flex-direction: row
-
 </style>

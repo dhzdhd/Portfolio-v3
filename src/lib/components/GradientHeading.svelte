@@ -9,13 +9,7 @@
 
 <div>
   {#if typeof text !== 'undefined'}
-    {#if alignment === 'left'}
-      <h2>{text}</h2>
-      <span></span>
-    {:else}
-      <span></span>
-      <h2>{text}</h2>
-    {/if}
+    <h2>{text}</h2>
   {:else}
     <span></span>
   {/if}
@@ -33,15 +27,17 @@
         gap: 2rem
 
         h2
+            font-size: vars.$font-h2
             color: vars.$color-primary-dark
 
-        span
-            height: 0.5rem
-            flex-grow: 1
-            background: linear-gradient(135deg, vars.$color-accent 0%, vars.$color-tertiary 100%)
+            &:hover
+                color: vars.$color-tertiary
 
         @media (prefers-color-scheme: dark)
             h2
                 color: vars.$color-primary-light
+
+                &:hover
+                    color: vars.$color-accent
 
 </style>

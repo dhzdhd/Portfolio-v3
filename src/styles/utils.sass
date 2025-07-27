@@ -1,2 +1,23 @@
 @function opacity($color, $opacity)
     @return #{$color}#{$opacity}
+
+@mixin blur-card($interactable: false, $default-blur: 3px, $radius: 2rem)
+    background: rgba(255, 255, 255, 0.009)
+    backdrop-filter: blur($default-blur)
+    -webkit-backdrop-filter: blur($default-blur)
+    border: 1px solid rgba(0, 0, 0, 0.5)
+    border-radius: $radius
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2)
+
+    @media (prefers-color-scheme: dark)
+        border: 1px solid rgba(255, 255, 255, 0.2)
+
+    @if $interactable == true
+        &:hover
+            backdrop-filter: blur(100px)
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0)
+            border: 1px solid rgba(0, 0, 0, 0.5)
+            cursor: pointer
+
+            @media (prefers-color-scheme: dark)
+                border: 1px solid rgba(255, 255, 255, 0.5)
