@@ -3,7 +3,6 @@
 </script>
 
 <header>
-  <div></div>
   <Navbar />
 </header>
 
@@ -15,7 +14,6 @@
         display: flex
         z-index: 50
         flex-direction: row
-        justify-content: space-between
         padding: 0rem 5rem
         height: 4rem
         width: 100vw
