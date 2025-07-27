@@ -28,17 +28,8 @@
     });
   });
 
-  let mainElement: any;
-
-  const handleScroll = () => {
-    const scrollY = window.scrollY;
-    mainElement.style.backgroundPosition = `${-scrollY * 0.05}px ${-scrollY * 0.05}px`;
-  };
-
   let isBlogRoute = $derived(page.route.id?.startsWith('/blog/'));
 </script>
-
-<svelte:window onscroll={handleScroll} />
 
 <svelte:head>
   <title>Portfolio</title>
@@ -47,7 +38,7 @@
 <svelte:body onclick={() => ($enabled = false)} />
 
 <Header />
-<main transition:fade bind:this={mainElement} class:blog-posts={isBlogRoute}>
+<main transition:fade class:blog-posts={isBlogRoute}>
   {@render children?.()}
 </main>
 
