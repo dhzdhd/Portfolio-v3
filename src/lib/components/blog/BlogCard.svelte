@@ -44,6 +44,7 @@
         .title
             h2
                 font-size: 2rem
+                color: vars.$color-primary-dark
 
         .subtitle
             color: transparentize(vars.$color-primary-dark, 0.3)
@@ -52,7 +53,8 @@
             align-items: center
 
         .tags
-            display: inline-flex
+            display: flex
+            flex-wrap: wrap
             padding: 1rem 0rem 0rem 0rem
             gap: 1rem
 
@@ -67,6 +69,10 @@
 
         @media (prefers-color-scheme: dark)
             color: vars.$color-primary-light
+
+            .title
+                h2
+                    color: vars.$color-primary-light
 
             .subtitle
                 color: transparentize(vars.$color-primary-light, 0.3)

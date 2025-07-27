@@ -60,7 +60,7 @@
 
     section
         height: 100%
-        padding: 4rem 2rem
+        padding: 4rem 0rem
 
         .container
           display: flex
@@ -96,4 +96,7 @@
 
             &:focus
               border-color: vars.$color-accent
+
+        @media (min-width: vars.$md)
+            padding: 4rem 2rem
 </style>
